@@ -42,9 +42,43 @@ var manager = new THREE.LoadingManager();
      console.log(object);
      scene.add(object);
 
-     object.children[15].scale.set(1,5,1);
+     //Asien
+     for (i=0; i<15; i++) {
+         object.children[i].scale.set(1,1,1);
 
-     object.scale.set(1,1,1); //Changes the size of the continents
+     }
+
+     //Oceanien
+     for (i=15; i<18; i++) {
+         object.children[i].scale.set(1,1,1);
+
+     }
+
+     //Afrika
+     for (i=18; i<20; i++) {
+         object.children[i].scale.set(1,1,1);
+
+     }
+
+     //Nordamerika
+     for (i=20; i<21; i++) {
+         object.children[i].scale.set(1,1,1);
+
+     }
+
+     //Sydamerika
+     for (i=21; i<22; i++) {
+         object.children[i].scale.set(1,1,1);
+
+     }
+
+     //Europa
+     for (i=22; i<27; i++) {
+         object.children[i].scale.set(1,1,1);
+
+     }
+
+
 
  } );
 
