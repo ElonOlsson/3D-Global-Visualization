@@ -39,8 +39,12 @@ var manager = new THREE.LoadingManager();
 
  var loader = new THREE.OBJLoader(manager);
  loader.load('objecWorldMapTest.obj', function (object) {
-    console.log(object);
+     console.log(object);
      scene.add(object);
+
+     object.children[15].scale.set(1,5,1);
+
+     object.scale.set(1,1,1); //Changes the size of the continents
 
  } );
 
