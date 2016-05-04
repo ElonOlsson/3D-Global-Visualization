@@ -58,6 +58,20 @@ scene.add(starMesh);
 
 	camera.position.z = 4;
 
+// read object
+/*var manager = new THREE.LoadingManager();
+manager.onProgress = function (item, loaded, total)
+{
+		console.log(item, loaded, total);
+};
+
+var loader = new THREE.OBJLoader(manager);
+loader.load('objecWorldMapTest.obj', function (object) {
+
+	scene.add(object);
+
+} );*/
+
 
 
 function render()
