@@ -39,65 +39,39 @@ var manager = new THREE.LoadingManager();
 
 
  var loader = new THREE.OBJLoader(manager);
- loader.load('objecWorldMapTest.obj', function (object) {
+ loader.load('karta.obj', function (object) {
 
      console.log(object);
      scene.add(object);
 
 
-     //ELIN TESTAR
-     //var asia = object.getObjectByName("Asien");
-     //asia.add(object.getObjectByName("Asien2"));
+     var asia = new THREE.Object3D();
+     asia = object.getObjectByName("Asien");
+     asia.scale.set(1,1,1);
 
-     //var obj = new THREE.Object3D();
-    // Put all segments of the model together into a single object
-     /*for (c = 0; c < 14; c++) {
-         obj.add(object.children[c]);
-     }
-     obj.scale.set(1,5,1);
+     var europe = new THREE.Object3D();
+     asia = object.getObjectByName("Europa");
+     asia.scale.set(1,1,1);
 
-      intersects[0].object.children[15].material.color.setHex( "111111" );*/
+     var oceanien = new THREE.Object3D();
+     asia = object.getObjectByName("Oceanien");
+     asia.scale.set(1,1,1);
+
+     var northamerica = new THREE.Object3D();
+     asia = object.getObjectByName("Nordamerika");
+     asia.scale.set(1,1,1);
+
+     var southamerica = new THREE.Object3D();
+     asia = object.getObjectByName("Sydamerika");
+     asia.scale.set(1,1,1);
+
+     var africa = new THREE.Object3D();
+     asia = object.getObjectByName("Afrika");
+     asia.scale.set(1,1,1);
 
 
 
-     //Asien
-     var asia=(object.children[0]);
 
-     for (i=1; i<13; i++) {
-         object.children[i].scale.set(1,1,1);
-
-     }
-
-
-     //Oceanien
-     for (i=15; i<18; i++) {
-         object.children[i].scale.set(1,1,1);
-
-     }
-
-     //Afrika
-     for (i=18; i<20; i++) {
-         object.children[i].scale.set(1,1,1);
-
-     }
-
-     //Nordamerika
-     for (i=20; i<21; i++) {
-         object.children[i].scale.set(1,1,1);
-
-     }
-
-     //Sydamerika
-     for (i=21; i<22; i++) {
-         object.children[i].scale.set(1,1,1);
-
-     }
-
-     //Europa
-     for (i=22; i<27; i++) {
-         object.children[i].scale.set(1,1,1);
-
-     }
 
  } );
 
