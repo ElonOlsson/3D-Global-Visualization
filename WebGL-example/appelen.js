@@ -14,11 +14,11 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 //Jorden
-/*var sphere = new THREE.SphereGeometry(0.5, 32, 32);
+var sphere = new THREE.SphereGeometry(0.5, 32, 32);
 var material = new THREE.MeshPhongMaterial();
 var earthMesh = new THREE.Mesh( sphere, material);
 
-scene.add(earthMesh);*/
+scene.add(earthMesh);
 
 //Controll
 var controls = new THREE.OrbitControls(camera,renderer.domElement);
@@ -37,16 +37,37 @@ var manager = new THREE.LoadingManager();
  };
 
 
+
  var loader = new THREE.OBJLoader(manager);
  loader.load('objecWorldMapTest.obj', function (object) {
+
      console.log(object);
      scene.add(object);
 
+
+     //ELIN TESTAR
+     //var asia = object.getObjectByName("Asien");
+     //asia.add(object.getObjectByName("Asien2"));
+
+     //var obj = new THREE.Object3D();
+    // Put all segments of the model together into a single object
+     /*for (c = 0; c < 14; c++) {
+         obj.add(object.children[c]);
+     }
+     obj.scale.set(1,5,1);
+
+      intersects[0].object.children[15].material.color.setHex( "111111" );*/
+
+
+
      //Asien
-     for (i=0; i<15; i++) {
+     var asia=(object.children[0]);
+
+     for (i=1; i<13; i++) {
          object.children[i].scale.set(1,1,1);
 
      }
+
 
      //Oceanien
      for (i=15; i<18; i++) {
@@ -78,10 +99,7 @@ var manager = new THREE.LoadingManager();
 
      }
 
-
-
  } );
-
 
 
   function render()
