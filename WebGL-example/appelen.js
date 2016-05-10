@@ -29,17 +29,27 @@ controls.enableZoom = true;
 
 camera.position.z = 4;
 
+
+
+/*var loader = new THREE.OBJLoader();
+loader.load('karta.obj', function(sfar, mat) {
+
+    var material = new THREE.MultiMaterial(mat);
+    //var hej = new THREE.SphereGeometry(0.5, 32, 32, sfar);
+    var object = new THREE.Mesh(sfar, mat);
+    scene.add(object);
+    }
+);*/
+
 // read object
 var manager = new THREE.LoadingManager();
- manager.onProgress = function (item, loaded, total)
- {
- console.log(item, loaded, total);
- };
+manager.onProgress = function (item, loaded, total)
+{
+    console.log(item, loaded, total);
+};
 
-
-
- var loader = new THREE.OBJLoader(manager);
- loader.load('karta.obj', function (object) {
+var loader = new THREE.OBJLoader(manager);
+loader.load('karta.obj', function (object) {
 
      console.log(object);
      scene.add(object);
@@ -50,30 +60,26 @@ var manager = new THREE.LoadingManager();
      asia.scale.set(1,1,1);
 
      var europe = new THREE.Object3D();
-     asia = object.getObjectByName("Europa");
-     asia.scale.set(1,1,1);
+     europe = object.getObjectByName("Europa");
+     europe.scale.set(1,1,1);
 
      var oceanien = new THREE.Object3D();
-     asia = object.getObjectByName("Oceanien");
-     asia.scale.set(1,1,1);
+     oceanien = object.getObjectByName("Oceanien");
+     oceanien.scale.set(1,1,1);
 
      var northamerica = new THREE.Object3D();
-     asia = object.getObjectByName("Nordamerika");
-     asia.scale.set(1,1,1);
+     northamerica = object.getObjectByName("Nordamerika");
+     northamerica.scale.set(1,1,1);
 
      var southamerica = new THREE.Object3D();
-     asia = object.getObjectByName("Sydamerika");
-     asia.scale.set(1,1,1);
+     southamerica = object.getObjectByName("Sydamerika");
+     southamerica.scale.set(1,1,1);
 
      var africa = new THREE.Object3D();
-     asia = object.getObjectByName("Afrika");
-     asia.scale.set(1,1,1);
+     africa = object.getObjectByName("Afrika");
+     africa.scale.set(1,3,1);
 
-
-
-
-
- } );
+} );
 
 
   function render()
