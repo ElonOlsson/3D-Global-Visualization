@@ -55,28 +55,28 @@ loader.load('karta.obj', function (object) {
      scene.add(object);
 
 
-     var asia = new THREE.Object3D();
-     asia = object.getObjectByName("Asien");
+     //var asia = new THREE.Object3D();
+     var asia = object.getObjectByName("Asien");
      asia.scale.set(1,1,1);
 
-     var europe = new THREE.Object3D();
-     europe = object.getObjectByName("Europa");
+    // var europe = new THREE.Object3D();
+     var europe = object.getObjectByName("Europa");
      europe.scale.set(1,1,1);
 
-     var oceanien = new THREE.Object3D();
-     oceanien = object.getObjectByName("Oceanien");
+     //var oceanien = new THREE.Object3D();
+     var oceanien = object.getObjectByName("Oceanien");
      oceanien.scale.set(1,1,1);
 
-     var northamerica = new THREE.Object3D();
-     northamerica = object.getObjectByName("Nordamerika");
+     //var northamerica = new THREE.Object3D();
+     var northamerica = object.getObjectByName("Nordamerika");
      northamerica.scale.set(1,1,1);
 
-     var southamerica = new THREE.Object3D();
-     southamerica = object.getObjectByName("Sydamerika");
+     //var southamerica = new THREE.Object3D();
+     var southamerica = object.getObjectByName("Sydamerika");
      southamerica.scale.set(1,1,1);
 
-     var africa = new THREE.Object3D();
-     africa = object.getObjectByName("Afrika");
+     //var africa = new THREE.Object3D();
+     var africa = object.getObjectByName("Afrika");
      africa.scale.set(1,3,1);
 
 } );
