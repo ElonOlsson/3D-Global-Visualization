@@ -31,17 +31,7 @@ camera.position.z = 4;
 
 
 
-/*var loader = new THREE.OBJLoader();
-loader.load('karta.obj', function(sfar, mat) {
-
-    var material = new THREE.MultiMaterial(mat);
-    //var hej = new THREE.SphereGeometry(0.5, 32, 32, sfar);
-    var object = new THREE.Mesh(sfar, mat);
-    scene.add(object);
-    }
-);*/
-
-// read object
+//read objfil
 var manager = new THREE.LoadingManager();
 manager.onProgress = function (item, loaded, total)
 {
@@ -49,63 +39,69 @@ manager.onProgress = function (item, loaded, total)
 };
 
 var loader = new THREE.OBJLoader(manager);
-loader.load('karta.obj', function (object) {
+loader.load('thisistheultimatemap.obj', function (object) {
 
     console.log('object');
      console.log(object);
 
-    object.children.forEach(function(element)) {
+
+
+
+    object.children.forEach(function(element) {
 
         var position = element.geometry.attributes.position.array;
+        var uvposition = element.geometry.attributes.uv.array;
 
         console.log(position);
 
-        for (i = 0; i <= position.length; i += 3) {
-            // var phi = position[i];
-            // var r = position[i + 1];
-            // var theta = position[i + 2];
+        for (i = 0, j=0; i <= position.length; i += 3, j+=2) {
 
-            // var r = 1;
-            // var x = r*Math.sin(2)*Math.cos(2);
-            // var y = r*Math.sin(2)*Math.sin(2);
-            // var z = r*Math.cos(2);
 
-            // position[i] = x;
-            // position[i + 1] = y;
-            // position[i + 2] = z;
+            var theta = (uvposition[j+1])*-Math.PI; //U
+            var phi = (uvposition[j]-0.5)*2*-Math.PI; //V
+
+
+            var r = position[i+2]+10;
+            var x = r*Math.sin(theta)*Math.cos(phi);
+            var y = r*Math.sin(theta)*Math.sin(phi);
+            var z = r*Math.cos(theta);
+
+            position[i] = x;
+            position[i+1] = y;
+            position[i+2] = z;
         }
 
-    };
+        element.geometry.computeFaceNormals();
+        element.geometry.normalsNeedUpdate = true;
+    });
 
+//var asia = new THREE.Object3D();
+    var asia = object.getObjectByName("Asien");
+    asia.scale.set(1,1,1);
+
+    // var europe = new THREE.Object3D();
+    var europe = object.getObjectByName("Europa");
+    europe.scale.set(1,1,1);
+
+    //var oceanien = new THREE.Object3D();
+    var oceanien = object.getObjectByName("Oceanien");
+    oceanien.scale.set(1,1,1);
+
+    //var northamerica = new THREE.Object3D();
+    var northamerica = object.getObjectByName("Nordamerika");
+    northamerica.scale.set(1,1,1);
+
+    //var southamerica = new THREE.Object3D();
+    var southamerica = object.getObjectByName("Sydamerika");
+    southamerica.scale.set(1,1,1);
+
+    //var africa = new THREE.Object3D();
+    var africa = object.getObjectByName("Afrika");
+    africa.scale.set(1,1,1);
 
 
 
      scene.add(object);
-
-
-     //var asia = new THREE.Object3D();
-     var asia = object.getObjectByName("Asien");
-     asia.scale.set(1,1,1);
-
-    // var europe = new THREE.Object3D();
-     var europe = object.getObjectByName("Europa");
-     europe.scale.set(1,1,1);
-
-     //var oceanien = new THREE.Object3D();
-     var oceanien = object.getObjectByName("Oceanien");
-     oceanien.scale.set(1,1,1);
-
-     //var northamerica = new THREE.Object3D();
-     var northamerica = object.getObjectByName("Nordamerika");
-     northamerica.scale.set(1,1,1);
-
-     //var southamerica = new THREE.Object3D();
-     var southamerica = object.getObjectByName("Sydamerika");
-     southamerica.scale.set(1,1,1);
-
-     //var africa = new THREE.Object3D();
-     var africa = object.getObjectByName("Afrika");
-     africa.scale.set(1,3,1);
 
 } );
 
