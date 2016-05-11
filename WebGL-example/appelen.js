@@ -14,8 +14,8 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 //Jorden
-var sphere = new THREE.SphereGeometry(0.5, 32, 32);
-var material = new THREE.MeshPhongMaterial();
+var sphere = new THREE.SphereGeometry(10.5, 32, 32);
+var material = new THREE.MeshPhongMaterial({ color: 0x156289} );
 var earthMesh = new THREE.Mesh( sphere, material);
 
 scene.add(earthMesh);
@@ -31,7 +31,9 @@ camera.position.z = 4;
 
 
 
-//read objfil
+/****************************************
+            LÄS IN KARTAN
+ ***************************************/
 var manager = new THREE.LoadingManager();
 manager.onProgress = function (item, loaded, total)
 {
@@ -45,6 +47,67 @@ loader.load('thisistheultimatemap.obj', function (object) {
      console.log(object);
 
 
+    /****************************************
+     SKALA OM KONTINENTER
+     ***************************************/
+    var Asia = object.getObjectByName("Asien");
+    var positionAsia = Asia.geometry.attributes.position.array;
+    for(i=0; i<=positionAsia.length; i +=3) {
+        positionAsia[i+2] *= 1;
+    }
+
+    var Oceanien = object.getObjectByName("Oceanien");
+    var positionOceanien = Oceanien.geometry.attributes.position.array;
+    for(i=0; i<=positionOceanien.length; i +=3) {
+        positionOceanien[i+2] *= 1;
+    }
+
+    var Europe = object.getObjectByName("Europa");
+    var positionEurope= Europe.geometry.attributes.position.array;
+    for(i=0; i<=positionEurope.length; i +=3) {
+        positionEurope[i+2] *= 1;
+    }
+
+    var Northamerica = object.getObjectByName("Nordamerika");
+    var positionNorthamerica = Northamerica.geometry.attributes.position.array;
+    for(i=0; i<=positionNorthamerica.length; i +=3) {
+        positionNorthamerica[i+2] *= 1;
+    }
+
+    var Southamerica = object.getObjectByName("Sydamerika");
+    var positionSouthamerica = Southamerica.geometry.attributes.position.array;
+    for(i=0; i<=positionSouthamerica.length; i +=3) {
+        positionSouthamerica[i+2] *= 1;
+    }
+
+    var Africa = object.getObjectByName("Afrika");
+    var positionAfrica = Africa.geometry.attributes.position.array;
+    for(i=0; i<=positionAfrica.length; i +=3) {
+        positionAfrica[i+2] *= 1;
+    }
+
+
+    /*var asia = object.getObjectByName("Asien");
+    asia.scale.set(1,1,1);
+
+    var europe = object.getObjectByName("Europa");
+    europe.scale.set(1,1,1);
+
+    var oceanien = object.getObjectByName("Oceanien");
+    oceanien.scale.set(1,1,1);
+
+    var northamerica = object.getObjectByName("Nordamerika");
+    northamerica.scale.set(1,1,1);
+
+    var southamerica = object.getObjectByName("Sydamerika");
+    southamerica.scale.set(1,1,1);
+
+    var africa = object.getObjectByName("Afrika");
+    africa.scale.set(1,1,1);*/
+
+    /****************************************
+            GÖR KARTAN TILL EN SFÄR
+     ***************************************/
 
 
     object.children.forEach(function(element) {
@@ -75,29 +138,6 @@ loader.load('thisistheultimatemap.obj', function (object) {
         element.geometry.normalsNeedUpdate = true;
     });
 
-//var asia = new THREE.Object3D();
-    var asia = object.getObjectByName("Asien");
-    asia.scale.set(1,1,1);
-
-    // var europe = new THREE.Object3D();
-    var europe = object.getObjectByName("Europa");
-    europe.scale.set(1,1,1);
-
-    //var oceanien = new THREE.Object3D();
-    var oceanien = object.getObjectByName("Oceanien");
-    oceanien.scale.set(1,1,1);
-
-    //var northamerica = new THREE.Object3D();
-    var northamerica = object.getObjectByName("Nordamerika");
-    northamerica.scale.set(1,1,1);
-
-    //var southamerica = new THREE.Object3D();
-    var southamerica = object.getObjectByName("Sydamerika");
-    southamerica.scale.set(1,1,1);
-
-    //var africa = new THREE.Object3D();
-    var africa = object.getObjectByName("Afrika");
-    africa.scale.set(1,1,1);
 
 
 
