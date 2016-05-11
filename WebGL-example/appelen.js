@@ -51,7 +51,35 @@ manager.onProgress = function (item, loaded, total)
 var loader = new THREE.OBJLoader(manager);
 loader.load('karta.obj', function (object) {
 
+    console.log('object');
      console.log(object);
+
+    object.children.forEach(function(element)) {
+
+        var position = element.geometry.attributes.position.array;
+
+        console.log(position);
+
+        for (i = 0; i <= position.length; i += 3) {
+            // var phi = position[i];
+            // var r = position[i + 1];
+            // var theta = position[i + 2];
+
+            // var r = 1;
+            // var x = r*Math.sin(2)*Math.cos(2);
+            // var y = r*Math.sin(2)*Math.sin(2);
+            // var z = r*Math.cos(2);
+
+            // position[i] = x;
+            // position[i + 1] = y;
+            // position[i + 2] = z;
+        }
+
+    };
+
+
+
+
      scene.add(object);
 
 
