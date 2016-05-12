@@ -2,7 +2,7 @@
 
 
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(60,window.innerWidth / window.innerHeight, 0.1,10000);
+var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1,10000);
 var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.6 );
 directionalLight.position.set( 20, 0, 20 );
 scene.add( directionalLight );
@@ -27,7 +27,10 @@ controls.enableDamping = true;
 controls.dampingFactor = 0.9;
 controls.enableZoom = true;
 
-camera.position.z = 4;
+camera.position.z = -40;
+
+controls.minDistance = 20;
+controls.maxDistance = 120;
 
 
 
@@ -53,7 +56,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
     var Asia = object.getObjectByName("Asien");
     var positionAsia = Asia.geometry.attributes.position.array;
     for(i=0; i<=positionAsia.length; i +=3) {
-        positionAsia[i+2] *= 1;
+        positionAsia[i+2] *= 4;
     }
 
     var Oceanien = object.getObjectByName("Oceanien");
@@ -65,13 +68,13 @@ loader.load('thisistheultimatemap.obj', function (object) {
     var Europe = object.getObjectByName("Europa");
     var positionEurope= Europe.geometry.attributes.position.array;
     for(i=0; i<=positionEurope.length; i +=3) {
-        positionEurope[i+2] *= 1;
+        positionEurope[i+2] *= 2;
     }
 
     var Northamerica = object.getObjectByName("Nordamerika");
     var positionNorthamerica = Northamerica.geometry.attributes.position.array;
     for(i=0; i<=positionNorthamerica.length; i +=3) {
-        positionNorthamerica[i+2] *= 1;
+        positionNorthamerica[i+2] *= 2;
     }
 
     var Southamerica = object.getObjectByName("Sydamerika");
@@ -83,7 +86,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
     var Africa = object.getObjectByName("Afrika");
     var positionAfrica = Africa.geometry.attributes.position.array;
     for(i=0; i<=positionAfrica.length; i +=3) {
-        positionAfrica[i+2] *= 1;
+        positionAfrica[i+2] *= 3;
     }
 
 
@@ -138,12 +141,17 @@ loader.load('thisistheultimatemap.obj', function (object) {
         element.geometry.normalsNeedUpdate = true;
     });
 
-
+    //The start location
+    object.rotation.x = Math.PI/2 - Math.PI/8;
+    object.rotation.z = Math.PI/2 + Math.PI/8;
 
 
      scene.add(object);
 
+
 } );
+
+
 
 
   function render()
