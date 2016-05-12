@@ -8,12 +8,15 @@ directionalLight.position.set( 20, 0, 20 );
 scene.add( directionalLight );
 scene.add(new THREE.AmbientLight(0x404040));
 
+camera.position.set( 0, 0, -40 );
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-//Jorden
+/****************************************
+            SKAPAR GLOBEN
+ ***************************************/
 var sphere = new THREE.SphereGeometry(10.5, 32, 32);
 var material = new THREE.MeshPhongMaterial({ color: 0x156289} );
 var earthMesh = new THREE.Mesh( sphere, material);
@@ -26,8 +29,6 @@ var controls = new THREE.OrbitControls(camera,renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.9;
 controls.enableZoom = true;
-
-camera.position.z = -40;
 
 controls.minDistance = 20;
 controls.maxDistance = 120;
@@ -53,11 +54,14 @@ loader.load('thisistheultimatemap.obj', function (object) {
     /****************************************
      SKALA OM KONTINENTER
      ***************************************/
+
+
     var Asia = object.getObjectByName("Asien");
     var positionAsia = Asia.geometry.attributes.position.array;
     for(i=0; i<=positionAsia.length; i +=3) {
-        positionAsia[i+2] *= 4;
+        positionAsia[i+2] *= 6;
     }
+
 
     var Oceanien = object.getObjectByName("Oceanien");
     var positionOceanien = Oceanien.geometry.attributes.position.array;
@@ -145,9 +149,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
     object.rotation.x = Math.PI/2 - Math.PI/8;
     object.rotation.z = Math.PI/2 + Math.PI/8;
 
-
      scene.add(object);
-
 
 } );
 
