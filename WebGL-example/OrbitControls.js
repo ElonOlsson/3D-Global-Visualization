@@ -55,11 +55,11 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 	// Set to false to disable rotating
 	this.enableRotate = true;
-	this.rotateSpeed = 1.0;
+	this.rotateSpeed = 0.6;
 
 	// Set to false to disable panning
-	this.enablePan = true;
-	this.keyPanSpeed = 7.0;	// pixels moved per arrow key push
+	//////////////////////this.enablePan = true;
+	/////////////////////this.keyPanSpeed = 7.0;	// pixels moved per arrow key push
 
 	// Set to true to automatically rotate around the target
 	// If auto-rotate is enabled, you must call controls.update() in your animation loop
@@ -73,6 +73,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 	this.keys = { LEFT: 37, UP: 38, RIGHT: 39, BOTTOM: 40 };
 
 	// Mouse buttons
+	//////////////////////////Kan man kommentera ut denna?
 	this.mouseButtons = { ORBIT: THREE.MOUSE.LEFT, ZOOM: THREE.MOUSE.MIDDLE, PAN: THREE.MOUSE.RIGHT };
 
 	// for reset
@@ -159,7 +160,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 			spherical.radius = Math.max( scope.minDistance, Math.min( scope.maxDistance, spherical.radius ) );
 
 			// move target to panned location
-			scope.target.add( panOffset );
+			//scope.target.add( panOffset );
 
 			offset.setFromSpherical( spherical );
 
@@ -182,7 +183,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 			}
 
 			scale = 1;
-			panOffset.set( 0, 0, 0 );
+			///////////////////panOffset.set( 0, 0, 0 );
 
 			// update condition is:
 			// min(camera displacement, camera rotation in radians)^2 > EPS
@@ -239,6 +240,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 	var startEvent = { type: 'start' };
 	var endEvent = { type: 'end' };
 
+	//////////////////////Kan man kommentera ut detta?
 	var STATE = { NONE : - 1, ROTATE : 0, DOLLY : 1, PAN : 2, TOUCH_ROTATE : 3, TOUCH_DOLLY : 4, TOUCH_PAN : 5 };
 
 	var state = STATE.NONE;
@@ -250,6 +252,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 	var sphericalDelta = new THREE.Spherical();
 
 	var scale = 1;
+	//////////////////////////////	Kan man kommentera ut detta?
 	var panOffset = new THREE.Vector3();
 	var zoomChanged = false;
 
@@ -257,6 +260,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 	var rotateEnd = new THREE.Vector2();
 	var rotateDelta = new THREE.Vector2();
 
+	//////////////////////////////Kan man kommentera ut detta?
 	var panStart = new THREE.Vector2();
 	var panEnd = new THREE.Vector2();
 	var panDelta = new THREE.Vector2();
@@ -288,8 +292,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 		sphericalDelta.phi -= angle;
 
 	}
-
-	var panLeft = function() {
+	//////////////////////////////Kan man kommentera ut detta?
+	/*var panLeft = function() {
 
 		var v = new THREE.Vector3();
 
@@ -302,7 +306,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 		};
 
-	}();
+	}(); */
 
 	var panUp = function() {
 
@@ -320,7 +324,12 @@ THREE.OrbitControls = function ( object, domElement ) {
 	}();
 
 	// deltaX and deltaY are in pixels; right and down are positive
-	var pan = function() {
+
+	///////////////////////////////
+	// Kommenterade ut högerklicket
+	///////////////////////////////
+
+/*	var pan = function() {
 
 		var offset = new THREE.Vector3();
 
@@ -358,7 +367,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 		};
 
-	}();
+	}();   */
 
 	function dollyIn( dollyScale ) {
 
@@ -421,15 +430,15 @@ THREE.OrbitControls = function ( object, domElement ) {
 		dollyStart.set( event.clientX, event.clientY );
 
 	}
-
-	function handleMouseDownPan( event ) {
+///////////////////////////////Kan man kommentera ut detta?
+/*	function handleMouseDownPan( event ) {
 
 		//console.log( 'handleMouseDownPan' );
 
 		panStart.set( event.clientX, event.clientY );
 
 	}
-
+*/
 	function handleMouseMoveRotate( event ) {
 
 		//console.log( 'handleMouseMoveRotate' );
@@ -474,7 +483,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 		scope.update();
 
 	}
-
+////////////////////////////////////Kan man kommentera ut detta?
+/*
 	function handleMouseMovePan( event ) {
 
 		//console.log( 'handleMouseMovePan' );
@@ -490,7 +500,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		scope.update();
 
 	}
-
+*/
 	function handleMouseUp( event ) {
 
 		//console.log( 'handleMouseUp' );
@@ -530,11 +540,12 @@ THREE.OrbitControls = function ( object, domElement ) {
 		scope.update();
 
 	}
-
+////////////////////////////Kan man kommentera ut detta?
+/*
 	function handleKeyDown( event ) {
 
 		//console.log( 'handleKeyDown' );
-
+		/////////////////////////////////////////Ingen default case, vågar inte kommentera ut
 		switch ( event.keyCode ) {
 
 			case scope.keys.UP:
@@ -560,7 +571,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		}
 
 	}
-
+*/
 	function handleTouchStartRotate( event ) {
 
 		//console.log( 'handleTouchStartRotate' );
@@ -581,7 +592,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 		dollyStart.set( 0, distance );
 
 	}
-
+///////////////////////////////////////////////Kan man kommentera ut detta?
+/*
 	function handleTouchStartPan( event ) {
 
 		//console.log( 'handleTouchStartPan' );
@@ -589,6 +601,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		panStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
 
 	}
+*/
 
 	function handleTouchMoveRotate( event ) {
 
@@ -639,7 +652,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 		scope.update();
 
 	}
-
+/////////////////////////////////////////Kan man kommentera ut detta?
+/*
 	function handleTouchMovePan( event ) {
 
 		//console.log( 'handleTouchMovePan' );
@@ -655,6 +669,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		scope.update();
 
 	}
+*/
 
 	function handleTouchEnd( event ) {
 
@@ -688,7 +703,10 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 			state = STATE.DOLLY;
 
-		} else if ( event.button === scope.mouseButtons.PAN ) {
+		}
+		///////////////////////Kan man kommentera ut detta?
+		/*
+		else if ( event.button === scope.mouseButtons.PAN ) {
 
 			if ( scope.enablePan === false ) return;
 
@@ -696,7 +714,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 			state = STATE.PAN;
 
-		}
+		}*/
 
 		if ( state !== STATE.NONE ) {
 
@@ -728,14 +746,17 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 			handleMouseMoveDolly( event );
 
-		} else if ( state === STATE.PAN ) {
+		}
+		/////////////////////////////////////Kan man kommentera ut detta?
+		/*
+		else if ( state === STATE.PAN ) {
 
 			if ( scope.enablePan === false ) return;
 
 			handleMouseMovePan( event );
 
 		}
-
+		*/
 	}
 
 	function onMouseUp( event ) {
@@ -769,8 +790,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 	}
 
 	function onKeyDown( event ) {
-
-		if ( scope.enabled === false || scope.enableKeys === false || scope.enablePan === false ) return;
+		///////////////////////// i if-satsens vilkor: || scope.enablePan === false )
+		if ( scope.enabled === false || scope.enableKeys === false ) return;
 
 		handleKeyDown( event );
 
@@ -802,6 +823,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 				break;
 
+			/////////////////////////////// Kan man kommentera ut detta?
+			/*
 			case 3: // three-fingered touch: pan
 
 				if ( scope.enablePan === false ) return;
@@ -811,7 +834,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 				state = STATE.TOUCH_PAN;
 
 				break;
-
+			*/
 			default:
 
 				state = STATE.NONE;
@@ -852,7 +875,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 				handleTouchMoveDolly( event );
 
 				break;
-
+			/////////////////////////////// Kan man kommentera ut detta?
+			/*
 			case 3: // three-fingered touch: pan
 
 				if ( scope.enablePan === false ) return;
@@ -861,7 +885,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 				handleTouchMovePan( event );
 
 				break;
-
+			*/
 			default:
 
 				state = STATE.NONE;
@@ -961,7 +985,8 @@ Object.defineProperties( THREE.OrbitControls.prototype, {
 		}
 
 	},
-
+	/////////////////////////////// Kan man kommentera ut detta?
+	/*
 	noPan: {
 
 		get: function () {
@@ -979,7 +1004,7 @@ Object.defineProperties( THREE.OrbitControls.prototype, {
 		}
 
 	},
-
+	*/
 	noKeys: {
 
 		get: function () {
