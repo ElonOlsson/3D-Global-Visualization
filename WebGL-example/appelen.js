@@ -151,42 +151,44 @@ loader.load('thisistheultimatemap.obj', function (object) {
                             ÄNDRA FÄRGER
      ****************************************************/
 
+    var color = [0xd5832, 0x4e8342, 0x6fa13f, 0x9ab438, 0xdfa943, 0xcc3f3f];
+
     function scaleColor(scale) {
 
         if (scale >= 1 && scale < 1.5) {
-            var material = new THREE.MeshPhongMaterial({ color: 0x2d5832} );
+            var material = new THREE.MeshPhongMaterial({ color: color[0]} );
         }
 
         else if (scale >= 1.5 && scale < 2) {
-            var material = new THREE.MeshPhongMaterial({ color: 0x4e8342} );
+            var material = new THREE.MeshPhongMaterial({ color: color[1]} );
         }
 
         else if (scale >= 2 && scale < 2.5) {
-            var material = new THREE.MeshPhongMaterial({ color: 0x6fa13f} );
+            var material = new THREE.MeshPhongMaterial({ color: color[2]} );
         }
 
         else if (scale >= 2.5 && scale < 3) {
-            var material = new THREE.MeshPhongMaterial({ color: 0x9ab438} );
+            var material = new THREE.MeshPhongMaterial({ color: color[3]} );
         }
 
         else if (scale >= 3 && scale < 4) {
-            var material = new THREE.MeshPhongMaterial({ color: 0xdfa943} );
+            var material = new THREE.MeshPhongMaterial({ color: color[4]} );
         }
 
         else {
-            var material = new THREE.MeshPhongMaterial({ color: 0xcc3f3f} );
+            var material = new THREE.MeshPhongMaterial({ color: color[5]} );
         }
 
         return material;
 
     }
 
-    Asia.material = scaleColor(12);
-    Oceanien.material = scaleColor(1);
-    Europe.material = scaleColor(2);
-    Northamerica.material = scaleColor(1);
-    Southamerica.material = scaleColor(1.8);
-    Africa.material = scaleColor(3.2);
+    Asia.material = scaleColor(scAsia);
+    Oceanien.material = scaleColor(scOceanien);
+    Europe.material = scaleColor(scEurope);
+    Northamerica.material = scaleColor(scNorthamerica);
+    Southamerica.material = scaleColor(scSouthamerica);
+    Africa.material = scaleColor(scAfrica);
 
     /****************************************
      GÖR KARTAN TILL EN SFÄR
