@@ -5,10 +5,11 @@ camera.position.set( 0, 0, -40 );
 
 // ljuskälla, follows the camera. camera child to scene, light child to camera
 scene.add(camera);
-var flashlight = new THREE.SpotLight(0xffffff,0.6,1000);
-flashlight.position.set(-45,46,1);
+var flashlight = new THREE.PointLight(0xffffff,1,100);
+flashlight.position.set(0,-10,-40);
 flashlight.target = camera;
-camera.add(flashlight);
+flashlight.position.copy(camera.position);
+scene.add(flashlight);
 
 //var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.6 );
 //directionalLight.position.set( 20, 0, 20 );
@@ -32,11 +33,12 @@ else if (el.attachEvent) {
 }
     doFunction();
 
+
 /****************************************
  SKAPAR GLOBEN
  ***************************************/
 var sphere = new THREE.SphereGeometry(10.5, 32, 32);
-var material = new THREE.MeshPhongMaterial({ color: 0x156289} );
+var material = new THREE.MeshPhongMaterial({ color: 0x4fa1ec} );
 var earthMesh = new THREE.Mesh( sphere, material);
 scene.add(earthMesh);
 
@@ -60,6 +62,13 @@ controls.minDistance = 30;
 controls.maxDistance = 60;
 
 
+//updatera så att ljuset följer kameran
+controls.addEventListener('change', light_update)
+function light_update() {
+    flashlight.position.copy(camera.position);
+}
+
+
 
 /****************************************
  LÄS IN KARTAN
@@ -75,6 +84,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     console.log('object');
 
+
     /****************************************
      SKALA OM KONTINENTER
      ***************************************/
@@ -87,7 +97,11 @@ loader.load('thisistheultimatemap.obj', function (object) {
         positionAsia[i+2] *= scAsia;
     }
 
+<<<<<<< Updated upstream
     var scOceanien = 1;
+=======
+
+>>>>>>> Stashed changes
 
     var Oceanien = object.getObjectByName("Oceanien");
     var positionOceanien = Oceanien.geometry.attributes.position.array;
@@ -95,7 +109,11 @@ loader.load('thisistheultimatemap.obj', function (object) {
         positionOceanien[i+2] *= scOceanien;
     }
 
+<<<<<<< Updated upstream
     var scEurope = 2;
+=======
+
+>>>>>>> Stashed changes
 
     var Europe = object.getObjectByName("Europa");
     var positionEurope= Europe.geometry.attributes.position.array;
@@ -103,7 +121,11 @@ loader.load('thisistheultimatemap.obj', function (object) {
         positionEurope[i+2] *= scEurope;
     }
 
+<<<<<<< Updated upstream
     var scNorthamerica = 1;
+=======
+
+>>>>>>> Stashed changes
 
     var Northamerica = object.getObjectByName("Nordamerika");
     var positionNorthamerica = Northamerica.geometry.attributes.position.array;
@@ -113,13 +135,18 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     var scSouthamerica = 1.8
 
+
     var Southamerica = object.getObjectByName("Sydamerika");
     var positionSouthamerica = Southamerica.geometry.attributes.position.array;
     for(i=0; i<=positionSouthamerica.length; i +=3) {
         positionSouthamerica[i+2] *= scSouthamerica;
     }
 
+<<<<<<< Updated upstream
     var scAfrica = 3.2;
+=======
+
+>>>>>>> Stashed changes
 
     var Africa = object.getObjectByName("Afrika");
     var positionAfrica = Africa.geometry.attributes.position.array;
@@ -128,43 +155,47 @@ loader.load('thisistheultimatemap.obj', function (object) {
     }
 
 
-    scaleColor(positionAsia[i+2], Asia);
-    scaleColor(positionOceanien[i+2], Oceanien);
-    scaleColor(positionEurope[i+2], Europe);
-    scaleColor(positionNorthamerica[i+2], Northamerica);
-    scaleColor(positionSouthamerica[i+2], Southamerica);
-    scaleColor(positionAfrica[i+2], Africa);
-
 
     /*****************************************************
-     Funktion för att färga kontinenter beroende av höjd
+                            ÄNDRA FÄRGER
      ****************************************************/
 
-    function scaleColor(continentPosition, continentObj) {
+    function scaleColor(scale) {
 
-        if (continentPosition >= 3) {
-            continentObj.material.color.setHex(0x156249)
+        if (scale >= 1 && scale < 1.5) {
+            var material = new THREE.MeshPhongMaterial({ color: 0x2d5832} );
         }
+
+        else if (scale >= 1.5 && scale < 2) {
+            var material = new THREE.MeshPhongMaterial({ color: 0x4e8342} );
+        }
+
+        else if (scale >= 2 && scale < 2.5) {
+            var material = new THREE.MeshPhongMaterial({ color: 0x6fa13f} );
+        }
+
+        else if (scale >= 2.5 && scale < 3) {
+            var material = new THREE.MeshPhongMaterial({ color: 0x9ab438} );
+        }
+
+        else if (scale >= 3 && scale < 4) {
+            var material = new THREE.MeshPhongMaterial({ color: 0xdfa943} );
+        }
+
+        else {
+            var material = new THREE.MeshPhongMaterial({ color: 0xcc3f3f} );
+        }
+
+        return material;
 
     }
 
-    /*var asia = object.getObjectByName("Asien");
-     asia.scale.set(1,1,1);
-
-     var europe = object.getObjectByName("Europa");
-     europe.scale.set(1,1,1);
-
-     var oceanien = object.getObjectByName("Oceanien");
-     oceanien.scale.set(1,1,1);
-
-     var northamerica = object.getObjectByName("Nordamerika");
-     northamerica.scale.set(1,1,1);
-
-     var southamerica = object.getObjectByName("Sydamerika");
-     southamerica.scale.set(1,1,1);
-
-     var africa = object.getObjectByName("Afrika");
-     africa.scale.set(1,1,1);*/
+    Asia.material = scaleColor(12);
+    Oceanien.material = scaleColor(1);
+    Europe.material = scaleColor(2);
+    Northamerica.material = scaleColor(1);
+    Southamerica.material = scaleColor(1.8);
+    Africa.material = scaleColor(3.2);
 
     /****************************************
      GÖR KARTAN TILL EN SFÄR
@@ -215,8 +246,12 @@ function render()
     requestAnimationFrame(render);
     controls.update();
     renderer.render(scene, camera);
+<<<<<<< Updated upstream
 
     starMesh.rotation.y += 0.0003;
+=======
+    starMesh.rotation.x += 0.0003;
+>>>>>>> Stashed changes
 
 }
 render();
