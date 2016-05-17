@@ -97,11 +97,8 @@ loader.load('thisistheultimatemap.obj', function (object) {
         positionAsia[i+2] *= scAsia;
     }
 
-<<<<<<< Updated upstream
     var scOceanien = 1;
-=======
 
->>>>>>> Stashed changes
 
     var Oceanien = object.getObjectByName("Oceanien");
     var positionOceanien = Oceanien.geometry.attributes.position.array;
@@ -109,11 +106,8 @@ loader.load('thisistheultimatemap.obj', function (object) {
         positionOceanien[i+2] *= scOceanien;
     }
 
-<<<<<<< Updated upstream
     var scEurope = 2;
-=======
 
->>>>>>> Stashed changes
 
     var Europe = object.getObjectByName("Europa");
     var positionEurope= Europe.geometry.attributes.position.array;
@@ -121,11 +115,8 @@ loader.load('thisistheultimatemap.obj', function (object) {
         positionEurope[i+2] *= scEurope;
     }
 
-<<<<<<< Updated upstream
     var scNorthamerica = 1;
-=======
 
->>>>>>> Stashed changes
 
     var Northamerica = object.getObjectByName("Nordamerika");
     var positionNorthamerica = Northamerica.geometry.attributes.position.array;
@@ -142,11 +133,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
         positionSouthamerica[i+2] *= scSouthamerica;
     }
 
-<<<<<<< Updated upstream
     var scAfrica = 3.2;
-=======
-
->>>>>>> Stashed changes
 
     var Africa = object.getObjectByName("Afrika");
     var positionAfrica = Africa.geometry.attributes.position.array;
@@ -246,12 +233,8 @@ function render()
     requestAnimationFrame(render);
     controls.update();
     renderer.render(scene, camera);
-<<<<<<< Updated upstream
-
     starMesh.rotation.y += 0.0003;
-=======
     starMesh.rotation.x += 0.0003;
->>>>>>> Stashed changes
 
 }
 render();
