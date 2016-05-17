@@ -6,7 +6,6 @@ camera.position.set( 0, 0, -40 );
 // ljuskälla, follows the camera. camera child to scene, light child to camera
 scene.add(camera);
 var flashlight = new THREE.PointLight(0xffffff,1,100);
-flashlight.position.set(0,-10,-40);
 flashlight.target = camera;
 flashlight.position.copy(camera.position);
 scene.add(flashlight);
