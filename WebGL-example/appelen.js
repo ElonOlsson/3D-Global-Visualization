@@ -163,12 +163,15 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
   function render()
   {
-  requestAnimationFrame(render);
-  controls.update();
-  renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    controls.update();
+    renderer.render(scene, camera);
   }
   render();
 
-
+  function changeAttributeOne()
+  {
+      
+  }
 
 

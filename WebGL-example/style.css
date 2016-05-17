@@ -1,0 +1,34 @@
+body{
+    margin: 0 0 0 0;
+}
+
+canvas{
+    width: 70vw;
+    float: right;
+    background-color: yellow;
+}
+
+/*divs*/
+
+#containerLeft
+{
+    float: left;
+    width:   20vw;
+    background-color: #643f80;
+}
+
+#containerRight
+{
+    float: right;
+    width: 70vw;
+    background-color: yellow;
+
+}
+
+/*Classes*/
+
+.buttonClass{
+    font-family: "Arial Black";
+    font-size: large;
+    font-weight: lighter;
+}
