@@ -22,7 +22,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("containerRight").appendChild(renderer.domElement);
 
-document.getElementById("clickMe").onclick = doFunction();
+//document.getElementById("clickMe").onclick = doFunction(10);
 
 var el = document.getElementById("clickMe");
 if (el.addEventListener)
@@ -30,7 +30,7 @@ if (el.addEventListener)
 else if (el.attachEvent) {
     el.attachEvent('onclick', doFunction);
 }
-    doFunction();
+var doFunction;
 
 /****************************************
  SKAPAR GLOBEN
@@ -111,7 +111,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
         positionNorthamerica[i+2] *= scNorthamerica;
     }
 
-    var scSouthamerica = 1.8
+    var scSouthamerica = 1.8;
 
     var Southamerica = object.getObjectByName("Sydamerika");
     var positionSouthamerica = Southamerica.geometry.attributes.position.array;
@@ -123,9 +123,12 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     var Africa = object.getObjectByName("Afrika");
     var positionAfrica = Africa.geometry.attributes.position.array;
-    for(i=0; i<=positionAfrica.length; i +=3) {
-        positionAfrica[i+2] *= scAfrica;
-    }
+    doFunction = function (scAfrika) {
+        for(i=0; i<=positionAfrica.length; i +=3) {
+            positionAfrica[i+2] *= scAfrica;
+        }
+    };
+
 
 
     scaleColor(positionAsia[i+2], Asia);
@@ -220,10 +223,5 @@ function render()
 
 }
 render();
-
-  function doFunction()
-  {
-      scAfrica = 10;
-  }
 
 
