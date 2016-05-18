@@ -20,17 +20,39 @@ scene.add(new THREE.AmbientLight(0x404040));
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
-document.getElementById("containerRight").appendChild(renderer.domElement);
-
+document.getElementById("container").appendChild(renderer.domElement);
 //document.getElementById("clickMe").onclick = doFunction(10);
-/*
+
+var Asia;
+var scAsia = 12;
+var scOceanien = 1;
+var scEurope = 2;
+var scNorthamerica = 1;
+var scSouthamerica = 1.8;
+var scAfrica = 3;
+
+function doFunction(AF, AS, EU, OC, SA, NA) {
+    scAsia = AS;
+    scOceanien = OC;
+    scEurope = EU;
+    scNorthamerica = NA;
+    scSouthamerica = SA;
+    scAfrica = AF;
+
+    console.log(scAsia);
+    update();
+}
+
+
+
 var el = document.getElementById("clickMe");
 if (el.addEventListener)
     el.addEventListener("click", doFunction, false);
 else if (el.attachEvent) {
     el.attachEvent('onclick', doFunction);
 }
-var doFunction;*/
+//var doFunction;
+
 
 
 /****************************************
@@ -83,6 +105,7 @@ manager.onProgress = function (item, loaded, total)
     console.log(item, loaded, total);
 };
 
+
 var loader = new THREE.OBJLoader(manager);
 loader.load('thisistheultimatemap.obj', function (object) {
 
@@ -95,9 +118,9 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
 /************ ASIEN ****************/
-    var scAsia = 12;
 
-    var Asia = object.getObjectByName("Asien");
+
+    Asia = object.getObjectByName("Asien");
     var positionAsia = Asia.geometry.attributes.position.array;
     var uvpositionAS = Asia.geometry.attributes.uv.array;
 
@@ -124,8 +147,10 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     scene.add(Asia);
 
+
+
 /************ OCEANIEN ****************/
-    var scOceanien = 1;
+
 
     var Oceanien = object.getObjectByName("Oceanien");
     var positionOceanien = Oceanien.geometry.attributes.position.array;
@@ -155,7 +180,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
 /************ EUROPA ****************/
-    var scEurope = 2;
+
 
     var Europe = object.getObjectByName("Europa");
     var positionEurope= Europe.geometry.attributes.position.array;
@@ -185,7 +210,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
 /************ NORDAMERIKA ****************/
-    var scNorthamerica = 1;
+
 
     var Northamerica = object.getObjectByName("Nordamerika");
     var positionNorthamerica = Northamerica.geometry.attributes.position.array;
@@ -215,7 +240,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
 /************ SYDAMERIKA ****************/
-    var scSouthamerica = 1.8;
+
 
     var Southamerica = object.getObjectByName("Sydamerika");
     var positionSouthamerica = Southamerica.geometry.attributes.position.array;
@@ -245,7 +270,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
 /************ AFRIKA ****************/
-    var scAfrica = 8.3;
+
 
     var Africa = object.getObjectByName("Afrika");
     var positionAfrica = Africa.geometry.attributes.position.array;
@@ -323,6 +348,8 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 } );
 
+
+
 function render()
 {
     requestAnimationFrame(render);
@@ -330,7 +357,6 @@ function render()
     renderer.render(scene, camera);
     starMesh.rotation.y += 0.0003;
     starMesh.rotation.x += 0.0003;
-
 }
 render();
 

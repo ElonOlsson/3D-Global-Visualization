@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My first Three.js app</title>
+	<title>Globelen</title>
 	<link href="style.css" media="screen" rel="stylesheet" type="text/css"/>
 	<script src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js"></script>
 	<!--<style>
@@ -11,27 +11,22 @@
 	</style>-->
 </head>
 <body>
-<div id="containerLeft">
+<div id="container">
 	<div id="bottonOne" class="buttonClass">
 	<!--	<button id="POPULATION" onclick="changeAttributeOne()">Population</button> -->
-        <input id="clickMe" type="button" value="clickme" onclick="doFunction(10);" />
-	</div>
+        <input id="clickMe" type="button" value="clickme" onclick="doFunction(10, 3, 4, 5, 2, 1)" />
+    </div>
     <div id="bottonTwo" class="buttonClass">
         <button id="MEDELLIVSLANGD" onclick="changeAttributeTwo()">Medellivsläng</button>
     </div>
 
+
 </div>
 
-	<div id ="containerRight">
-
-		<script src = "OrbitControls.js"></script>
-		<script src = "egenOBJLoader.js"></script>
-		<script src = "egenJSONLoader.js"></script>
-		<script src = "appelen.js"></script>
-
-
-
-	</div>
+    <script src = "OrbitControls.js"></script>
+    <script src = "egenOBJLoader.js"></script>
+    <script src = "egenJSONLoader.js"></script>
+    <script src = "appelen.js"></script>
 </body>
 </html>
 
