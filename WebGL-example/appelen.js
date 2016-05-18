@@ -20,7 +20,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("containerRight").appendChild(renderer.domElement);
 
-document.getElementById("clickMe").onclick = doFunction();
+//document.getElementById("clickMe").onclick = doFunction(10);
 
 var el = document.getElementById("clickMe");
 if (el.addEventListener)
@@ -28,7 +28,7 @@ if (el.addEventListener)
 else if (el.attachEvent) {
     el.attachEvent('onclick', doFunction);
 }
-    doFunction();
+var doFunction;
 
 
 /****************************************
@@ -119,19 +119,35 @@ loader.load('thisistheultimatemap.obj', function (object) {
         positionNorthamerica[i+2] *= 1.5;
     }
 
+
     var scSouthamerica = 1.8
+
     var Southamerica = object.getObjectByName("Sydamerika");
     var positionSouthamerica = Southamerica.geometry.attributes.position.array;
     for(i=0; i<=positionSouthamerica.length; i +=3) {
         positionSouthamerica[i+2] *= 1.5;
     }
 
-    var scAfrica = 3.2;
+    var scAfrica = 8.2;
+
     var Africa = object.getObjectByName("Afrika");
     var positionAfrica = Africa.geometry.attributes.position.array;
-    for(i=0; i<=positionAfrica.length; i +=3) {
-        positionAfrica[i+2] *= 1.5;
+
+    var uvposition = Africa.geometry.attributes.uv.array;
+    for(i=0, j=0; i<=positionAfrica.length; i +=3, j +=2) {
+        var r = positionAfrica[i+2]+10;
+        var theta = (uvposition[j+1])*-Math.PI; //U
+        var z = r*Math.cos(theta);
+        z[i+2] *= scAfrica;
+
+        //   positionAfrica[i+2] *= scAfrica;
     }
+    function doFunction () {
+        for(i=0; i<=positionAfrica.length; i +=3) {
+            positionAfrica[i+2] *= 10;
+        }
+    }
+
 
 
     /*****************************************************
@@ -189,6 +205,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     var growingSpeed = 3;
 
+
     function scaleAnim() {
 
         //stopanimation?
@@ -197,6 +214,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
         for(i = 0; i <= positionAsia.length; i += 3) {
             positionAsia[i+2] *= growingSpeed;
         }
+
 
         window.requestAnimationFrame(scaleAnim);
 
@@ -213,7 +231,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
     object.children.forEach(function(element) {
 
         var position = element.geometry.attributes.position.array;
-        var uvposition = element.geometry.attributes.uv.array;
+        uvposition = element.geometry.attributes.uv.array;
 
         console.log(position);
 
@@ -234,7 +252,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
         }
 
         element.geometry.computeFaceNormals();
-        element.geometry.computeVertexNormals()
+        element.geometry.computeVertexNormals();
         element.geometry.normalsNeedUpdate = true;
     });
 
@@ -246,7 +264,6 @@ loader.load('thisistheultimatemap.obj', function (object) {
     scene.add(object);
 
 } );
-
 
 
 function render()
@@ -261,8 +278,6 @@ function render()
 
 
 render();
-
-
 
   function doFunction()
 {
