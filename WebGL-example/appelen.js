@@ -5,16 +5,16 @@ camera.position.set( 0, 0, -40 );
 
 // ljuskälla, follows the camera. camera child to scene, light child to camera
 scene.add(camera);
-var flashlight = new THREE.SpotLight(0xffffff,0.6,1000);
-flashlight.position.set(-45,46,1);
+var flashlight = new THREE.PointLight(0xffffff,1,100);
 flashlight.target = camera;
-camera.add(flashlight);
+flashlight.position.copy(camera.position);
+scene.add(flashlight);
 
 //var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.6 );
 //directionalLight.position.set( 20, 0, 20 );
 //scene.add( directionalLight );
-
 scene.add(new THREE.AmbientLight(0x404040));
+
 
 
 
@@ -32,14 +32,19 @@ else if (el.attachEvent) {
 }
 var doFunction;
 
+
 /****************************************
- SKAPAR GLOBEN
+            SKAPAR GLOBEN
  ***************************************/
 var sphere = new THREE.SphereGeometry(10.5, 32, 32);
-var material = new THREE.MeshPhongMaterial({ color: 0x156289} );
+var material = new THREE.MeshPhongMaterial({ color: 0x4fa1ec} );
 var earthMesh = new THREE.Mesh( sphere, material);
 scene.add(earthMesh);
 
+
+/****************************************
+            SKAPAR BAKGRUNDEN
+ ***************************************/
 var geometryStars = new THREE.SphereGeometry(50, 32, 32);
 var materialStars = new THREE.MeshBasicMaterial();
 materialStars.map = THREE.ImageUtils.loadTexture('Bilder/stars.png');
@@ -48,7 +53,9 @@ var starMesh = new THREE.Mesh(geometryStars, materialStars);
 scene.add(starMesh);
 
 
-//Controll
+/****************************************
+            ORBIT CONTROLS
+ ***************************************/
 var controls = new THREE.OrbitControls(camera,renderer.domElement);
 //controls.addEventListener('change', render);
 controls.enableDamping = true;
@@ -59,10 +66,16 @@ controls.enableZoom = true;
 controls.minDistance = 30;
 controls.maxDistance = 60;
 
+//updatera så att ljuset följer kameran
+controls.addEventListener('change', light_update)
+function light_update() {
+    flashlight.position.copy(camera.position);
+}
+
 
 
 /****************************************
- LÄS IN KARTAN
+            LÄS IN KARTAN
  ***************************************/
 var manager = new THREE.LoadingManager();
 manager.onProgress = function (item, loaded, total)
@@ -75,8 +88,9 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     console.log('object');
 
+
     /****************************************
-     SKALA OM KONTINENTER
+                SKALA OM KONTINENTER
      ***************************************/
 
     var scAsia = 12;
@@ -89,6 +103,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     var scOceanien = 1;
 
+
     var Oceanien = object.getObjectByName("Oceanien");
     var positionOceanien = Oceanien.geometry.attributes.position.array;
     for(i=0; i<=positionOceanien.length; i +=3) {
@@ -96,6 +111,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
     }
 
     var scEurope = 2;
+
 
     var Europe = object.getObjectByName("Europa");
     var positionEurope= Europe.geometry.attributes.position.array;
@@ -105,6 +121,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     var scNorthamerica = 1;
 
+
     var Northamerica = object.getObjectByName("Nordamerika");
     var positionNorthamerica = Northamerica.geometry.attributes.position.array;
     for(i=0; i<=positionNorthamerica.length; i +=3) {
@@ -112,6 +129,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
     }
 
     var scSouthamerica = 1.8;
+
 
     var Southamerica = object.getObjectByName("Sydamerika");
     var positionSouthamerica = Southamerica.geometry.attributes.position.array;
@@ -131,43 +149,49 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
 
-    scaleColor(positionAsia[i+2], Asia);
-    scaleColor(positionOceanien[i+2], Oceanien);
-    scaleColor(positionEurope[i+2], Europe);
-    scaleColor(positionNorthamerica[i+2], Northamerica);
-    scaleColor(positionSouthamerica[i+2], Southamerica);
-    scaleColor(positionAfrica[i+2], Africa);
-
 
     /*****************************************************
-     Funktion för att färga kontinenter beroende av höjd
+                            ÄNDRA FÄRGER
      ****************************************************/
 
-    function scaleColor(continentPosition, continentObj) {
+    var color = [0xd5832, 0x4e8342, 0x6fa13f, 0x9ab438, 0xdfa943, 0xcc3f3f];
 
-        if (continentPosition >= 3) {
-            continentObj.material.color.setHex(0x156249)
+    function scaleColor(scale) {
+
+        if (scale >= 1 && scale < 1.5) {
+            var material = new THREE.MeshPhongMaterial({ color: color[0]} );
         }
+
+        else if (scale >= 1.5 && scale < 2) {
+            var material = new THREE.MeshPhongMaterial({ color: color[1]} );
+        }
+
+        else if (scale >= 2 && scale < 2.5) {
+            var material = new THREE.MeshPhongMaterial({ color: color[2]} );
+        }
+
+        else if (scale >= 2.5 && scale < 3) {
+            var material = new THREE.MeshPhongMaterial({ color: color[3]} );
+        }
+
+        else if (scale >= 3 && scale < 4) {
+            var material = new THREE.MeshPhongMaterial({ color: color[4]} );
+        }
+
+        else {
+            var material = new THREE.MeshPhongMaterial({ color: color[5]} );
+        }
+
+        return material;
 
     }
 
-    /*var asia = object.getObjectByName("Asien");
-     asia.scale.set(1,1,1);
-
-     var europe = object.getObjectByName("Europa");
-     europe.scale.set(1,1,1);
-
-     var oceanien = object.getObjectByName("Oceanien");
-     oceanien.scale.set(1,1,1);
-
-     var northamerica = object.getObjectByName("Nordamerika");
-     northamerica.scale.set(1,1,1);
-
-     var southamerica = object.getObjectByName("Sydamerika");
-     southamerica.scale.set(1,1,1);
-
-     var africa = object.getObjectByName("Afrika");
-     africa.scale.set(1,1,1);*/
+    Asia.material = scaleColor(scAsia);
+    Oceanien.material = scaleColor(scOceanien);
+    Europe.material = scaleColor(scEurope);
+    Northamerica.material = scaleColor(scNorthamerica);
+    Southamerica.material = scaleColor(scSouthamerica);
+    Africa.material = scaleColor(scAfrica);
 
     /****************************************
      GÖR KARTAN TILL EN SFÄR
@@ -199,6 +223,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
         }
 
         element.geometry.computeFaceNormals();
+        element.geometry.computeVertexNormals()
         element.geometry.normalsNeedUpdate = true;
     });
 
@@ -206,8 +231,8 @@ loader.load('thisistheultimatemap.obj', function (object) {
     object.rotation.x = Math.PI/2 - Math.PI/8;
     object.rotation.z = Math.PI/2 + Math.PI/8;
 
-    scene.add(object);
 
+    scene.add(object);
 } );
 
 
@@ -218,8 +243,8 @@ function render()
     requestAnimationFrame(render);
     controls.update();
     renderer.render(scene, camera);
-
     starMesh.rotation.y += 0.0003;
+    starMesh.rotation.x += 0.0003;
 
 }
 render();
