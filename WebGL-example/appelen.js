@@ -16,8 +16,6 @@ scene.add(flashlight);
 scene.add(new THREE.AmbientLight(0x404040));
 
 
-
-
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("container").appendChild(renderer.domElement);
@@ -59,7 +57,7 @@ else if (el.attachEvent) {
             SKAPAR GLOBEN
  ***************************************/
 var sphere = new THREE.SphereGeometry(10.5, 32, 32);
-var material = new THREE.MeshPhongMaterial({ color: 0x4fa1ec} );
+var material = new THREE.MeshPhongMaterial({shininess: 20, color: 0x4fa1ec} );
 var earthMesh = new THREE.Mesh( sphere, material);
 scene.add(earthMesh);
 
@@ -118,9 +116,14 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
 /************ ASIEN ****************/
+<<<<<<< HEAD
 
 
     Asia = object.getObjectByName("Asien");
+=======
+    var scAsia = 12;
+    var Asia = object.getObjectByName("Asien");
+>>>>>>> origin/master
     var positionAsia = Asia.geometry.attributes.position.array;
     var uvpositionAS = Asia.geometry.attributes.uv.array;
 
@@ -174,6 +177,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
     Oceanien.geometry.computeVertexNormals();
     Oceanien.geometry.normalsNeedUpdate = true;
 
+
     Oceanien.rotation.x = Math.PI/2 - Math.PI/8;
     Oceanien.rotation.z = Math.PI/2 + Math.PI/8;
     scene.add(Oceanien);
@@ -198,6 +202,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
         positionEurope[i] = x;
         positionEurope[i+1] = y;
         positionEurope[i+2] =z;
+
 
     }
     Europe.geometry.computeFaceNormals();
@@ -234,8 +239,10 @@ loader.load('thisistheultimatemap.obj', function (object) {
     Northamerica.geometry.computeVertexNormals();
     Northamerica.geometry.normalsNeedUpdate = true;
 
+
     Northamerica.rotation.x = Math.PI/2 - Math.PI/8;
     Northamerica.rotation.z = Math.PI/2 + Math.PI/8;
+
     scene.add(Northamerica);
 
 
@@ -301,8 +308,6 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
 
-
-
     /*****************************************************
                             ÄNDRA FÄRGER
      ****************************************************/
@@ -321,6 +326,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
         else if (scale >= 2 && scale < 2.5) {
             var material = new THREE.MeshPhongMaterial({ color: color[2]} );
+
         }
 
         else if (scale >= 2.5 && scale < 3) {
@@ -332,7 +338,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
         }
 
         else {
-            var material = new THREE.MeshPhongMaterial({ color: color[5]} );
+            var material = new THREE.MeshPhongMaterial({color: color[5]} );
         }
 
         return material;
@@ -346,10 +352,82 @@ loader.load('thisistheultimatemap.obj', function (object) {
     Southamerica.material = scaleColor(scSouthamerica);
     Africa.material = scaleColor(scAfrica);
 
+
+    /*************************************************************************************************
+     Försöker fixa scale animation m.h.a scaleAnim-funktionen så
+     den växer med growingspeed varje gång funktionen loopas.
+     Händer dock inget atm.
+
+     http://stackoverflow.com/questions/10735922/how-to-stop-a-requestanimationframe-recursion-loop
+     *******************************************************************************************'*******/
+
+    var growingSpeed = 3;
+
+
+    function scaleAnim() {
+
+        //stopanimation?
+        if (positionAsia[i+2] == scAsia) return;
+
+        for(i = 0; i <= positionAsia.length; i += 3) {
+            positionAsia[i+2] *= growingSpeed;
+        }
+
+
+        window.requestAnimationFrame(scaleAnim);
+
+
+    }
+
+    //start scale animation
+    scaleAnim();
+
+    /****************************************
+     GÖR KARTAN TILL EN SFÄR
+     ***************************************/
+
+    object.children.forEach(function(element) {
+
+        var position = element.geometry.attributes.position.array;
+        uvposition = element.geometry.attributes.uv.array;
+
+        console.log(position);
+
+        for (i = 0, j=0; i <= position.length; i += 3, j+=2) {
+
+            var theta = (uvposition[j+1])*-Math.PI; //U
+            var phi = (uvposition[j]-0.5)*2*-Math.PI; //V
+
+            var r = position[i+2]+10;
+            var x = r*Math.sin(theta)*Math.cos(phi);
+            var y = r*Math.sin(theta)*Math.sin(phi);
+            var z = r*Math.cos(theta);
+
+            position[i] = x;
+            position[i+1] = y;
+            position[i+2] = z;
+
+        }
+
+        element.geometry.computeFaceNormals();
+        element.geometry.computeVertexNormals();
+        element.geometry.normalsNeedUpdate = true;
+    });
+
+    //The start location
+    object.rotation.x = Math.PI/2 - Math.PI/8;
+    object.rotation.z = Math.PI/2 + Math.PI/8;
+
+
+    scene.add(object);
+    
 } );
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 function render()
 {
     requestAnimationFrame(render);
@@ -358,6 +436,11 @@ function render()
     starMesh.rotation.y += 0.0003;
     starMesh.rotation.x += 0.0003;
 }
+
+
 render();
 
-
+  function doFunction()
+{
+    scAfrica = 10;
+}
