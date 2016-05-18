@@ -23,14 +23,14 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("containerRight").appendChild(renderer.domElement);
 
 //document.getElementById("clickMe").onclick = doFunction(10);
-
+/*
 var el = document.getElementById("clickMe");
 if (el.addEventListener)
     el.addEventListener("click", doFunction, false);
 else if (el.attachEvent) {
     el.attachEvent('onclick', doFunction);
 }
-var doFunction;
+var doFunction;*/
 
 
 /****************************************
@@ -90,72 +90,190 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
     /****************************************
-                SKALA OM KONTINENTER
+     SKALA OM KONTINENTER OCH GÖR TILL SFÄR
      ***************************************/
 
+
+/************ ASIEN ****************/
     var scAsia = 12;
 
     var Asia = object.getObjectByName("Asien");
     var positionAsia = Asia.geometry.attributes.position.array;
-    for(i=0; i<=positionAsia.length; i +=3) {
-        positionAsia[i+2] *= scAsia;
+    var uvpositionAS = Asia.geometry.attributes.uv.array;
+
+    for(i=0, j=0; i<=positionAsia.length; i +=3, j +=2) {
+        var theta = (uvpositionAS[j+1])*-Math.PI; //U
+        var phi = (uvpositionAS[j]-0.5)*2*-Math.PI; //V
+        var r = (positionAsia[i+2]*scAsia+10);
+
+        var x = r*Math.sin(theta)*Math.cos(phi);
+        var y = r*Math.sin(theta)*Math.sin(phi);
+        var z = r*Math.cos(theta);
+
+        positionAsia[i] = x;
+        positionAsia[i+1] = y;
+        positionAsia[i+2] =z;
+
     }
+    Asia.geometry.computeFaceNormals();
+    Asia.geometry.computeVertexNormals();
+    Asia.geometry.normalsNeedUpdate = true;
 
+    Asia.rotation.x = Math.PI/2 - Math.PI/8;
+    Asia.rotation.z = Math.PI/2 + Math.PI/8;
+
+    scene.add(Asia);
+
+/************ OCEANIEN ****************/
     var scOceanien = 1;
-
 
     var Oceanien = object.getObjectByName("Oceanien");
     var positionOceanien = Oceanien.geometry.attributes.position.array;
-    for(i=0; i<=positionOceanien.length; i +=3) {
-        positionOceanien[i+2] *= scOceanien;
+    var uvpositionOC = Oceanien.geometry.attributes.uv.array;
+
+    for(i=0, j=0; i<=positionOceanien.length; i +=3, j +=2) {
+        var theta = (uvpositionOC[j+1])*-Math.PI; //U
+        var phi = (uvpositionOC[j]-0.5)*2*-Math.PI; //V
+        var r = (positionOceanien[i+2]*scOceanien+10);
+
+        var x = r*Math.sin(theta)*Math.cos(phi);
+        var y = r*Math.sin(theta)*Math.sin(phi);
+        var z = r*Math.cos(theta);
+
+        positionOceanien[i] = x;
+        positionOceanien[i+1] = y;
+        positionOceanien[i+2] =z;
+
     }
+    Oceanien.geometry.computeFaceNormals();
+    Oceanien.geometry.computeVertexNormals();
+    Oceanien.geometry.normalsNeedUpdate = true;
 
+    Oceanien.rotation.x = Math.PI/2 - Math.PI/8;
+    Oceanien.rotation.z = Math.PI/2 + Math.PI/8;
+    scene.add(Oceanien);
+
+
+/************ EUROPA ****************/
     var scEurope = 2;
-
 
     var Europe = object.getObjectByName("Europa");
     var positionEurope= Europe.geometry.attributes.position.array;
-    for(i=0; i<=positionEurope.length; i +=3) {
-        positionEurope[i+2] *= scEurope;
+    var uvpositionEU = Europe.geometry.attributes.uv.array;
+
+    for(i=0, j=0; i<=positionEurope.length; i +=3, j +=2) {
+        var theta = (uvpositionEU[j+1])*-Math.PI; //U
+        var phi = (uvpositionEU[j]-0.5)*2*-Math.PI; //V
+        var r = (positionEurope[i+2]*scEurope+10);
+
+        var x = r*Math.sin(theta)*Math.cos(phi);
+        var y = r*Math.sin(theta)*Math.sin(phi);
+        var z = r*Math.cos(theta);
+
+        positionEurope[i] = x;
+        positionEurope[i+1] = y;
+        positionEurope[i+2] =z;
+
     }
+    Europe.geometry.computeFaceNormals();
+    Europe.geometry.computeVertexNormals();
+    Europe.geometry.normalsNeedUpdate = true;
 
+    Europe.rotation.x = Math.PI/2 - Math.PI/8;
+    Europe.rotation.z = Math.PI/2 + Math.PI/8;
+    scene.add(Europe);
+
+
+/************ NORDAMERIKA ****************/
     var scNorthamerica = 1;
-
 
     var Northamerica = object.getObjectByName("Nordamerika");
     var positionNorthamerica = Northamerica.geometry.attributes.position.array;
-    for(i=0; i<=positionNorthamerica.length; i +=3) {
-        positionNorthamerica[i+2] *= scNorthamerica;
+    var uvpositionNA = Northamerica.geometry.attributes.uv.array;
+
+    for(i=0, j=0; i<=positionNorthamerica.length; i +=3, j +=2) {
+        var theta = (uvpositionNA[j+1])*-Math.PI; //U
+        var phi = (uvpositionNA[j]-0.5)*2*-Math.PI; //V
+        var r = (positionNorthamerica[i+2]*scNorthamerica+10);
+
+        var x = r*Math.sin(theta)*Math.cos(phi);
+        var y = r*Math.sin(theta)*Math.sin(phi);
+        var z = r*Math.cos(theta);
+
+        positionNorthamerica[i] = x;
+        positionNorthamerica[i+1] = y;
+        positionNorthamerica[i+2] =z;
+
     }
+    Northamerica.geometry.computeFaceNormals();
+    Northamerica.geometry.computeVertexNormals();
+    Northamerica.geometry.normalsNeedUpdate = true;
 
+    Northamerica.rotation.x = Math.PI/2 - Math.PI/8;
+    Northamerica.rotation.z = Math.PI/2 + Math.PI/8;
+    scene.add(Northamerica);
+
+
+/************ SYDAMERIKA ****************/
     var scSouthamerica = 1.8;
-
 
     var Southamerica = object.getObjectByName("Sydamerika");
     var positionSouthamerica = Southamerica.geometry.attributes.position.array;
-    for(i=0; i<=positionSouthamerica.length; i +=3) {
-        positionSouthamerica[i+2] *= scSouthamerica;
-    }
+    var uvpositionSA = Southamerica.geometry.attributes.uv.array;
 
-    var scAfrica = 8.2;
+    for(i=0, j=0; i<=positionSouthamerica.length; i +=3, j +=2) {
+        var theta = (uvpositionSA[j+1])*-Math.PI; //U
+        var phi = (uvpositionSA[j]-0.5)*2*-Math.PI; //V
+        var r = (positionSouthamerica[i+2]*scSouthamerica+10);
+
+        var x = r*Math.sin(theta)*Math.cos(phi);
+        var y = r*Math.sin(theta)*Math.sin(phi);
+        var z = r*Math.cos(theta);
+
+        positionSouthamerica[i] = x;
+        positionSouthamerica[i+1] = y;
+        positionSouthamerica[i+2] =z;
+
+    }
+    Southamerica.geometry.computeFaceNormals();
+    Southamerica.geometry.computeVertexNormals();
+    Southamerica.geometry.normalsNeedUpdate = true;
+
+    Southamerica.rotation.x = Math.PI/2 - Math.PI/8;
+    Southamerica.rotation.z = Math.PI/2 + Math.PI/8;
+    scene.add(Southamerica);
+
+
+/************ AFRIKA ****************/
+    var scAfrica = 8.3;
 
     var Africa = object.getObjectByName("Afrika");
     var positionAfrica = Africa.geometry.attributes.position.array;
+    var uvpositionAF = Africa.geometry.attributes.uv.array;
 
-    var uvposition = Africa.geometry.attributes.uv.array;
     for(i=0, j=0; i<=positionAfrica.length; i +=3, j +=2) {
-        var r = positionAfrica[i+2]+10;
-        var theta = (uvposition[j+1])*-Math.PI; //U
-        var z = r*Math.cos(theta);
-        z[i+2] *= scAfrica;
+        var theta = (uvpositionAF[j+1])*-Math.PI; //U
+        var phi = (uvpositionAF[j]-0.5)*2*-Math.PI; //V
+        var r = (positionAfrica[i+2]*scAfrica+10);
 
-        //   positionAfrica[i+2] *= scAfrica;
+        var x = r*Math.sin(theta)*Math.cos(phi);
+        var y = r*Math.sin(theta)*Math.sin(phi);
+        var z = r*Math.cos(theta);
+
+        positionAfrica[i] = x;
+        positionAfrica[i+1] = y;
+        positionAfrica[i+2] =z;
+
     }
-    function doFunction () {
-        for(i=0; i<=positionAfrica.length; i +=3) {
-            positionAfrica[i+2] *= 10;
-        }
-    }
+    Africa.geometry.computeFaceNormals();
+    Africa.geometry.computeVertexNormals();
+    Africa.geometry.normalsNeedUpdate = true;
+
+    Africa.rotation.x = Math.PI/2 - Math.PI/8;
+    Africa.rotation.z = Math.PI/2 + Math.PI/8;
+    scene.add(Africa);
+
+
 
 
 
@@ -203,46 +321,6 @@ loader.load('thisistheultimatemap.obj', function (object) {
     Southamerica.material = scaleColor(scSouthamerica);
     Africa.material = scaleColor(scAfrica);
 
-    /****************************************
-     GÖR KARTAN TILL EN SFÄR
-     ***************************************/
-
-
-    object.children.forEach(function(element) {
-
-        var position = element.geometry.attributes.position.array;
-        uvposition = element.geometry.attributes.uv.array;
-
-        console.log(position);
-
-        for (i = 0, j=0; i <= position.length; i += 3, j+=2) {
-
-
-            var theta = (uvposition[j+1])*-Math.PI; //U
-            var phi = (uvposition[j]-0.5)*2*-Math.PI; //V
-
-
-            var r = position[i+2]+10;
-            var x = r*Math.sin(theta)*Math.cos(phi);
-            var y = r*Math.sin(theta)*Math.sin(phi);
-            var z = r*Math.cos(theta);
-
-            position[i] = x;
-            position[i+1] = y;
-            position[i+2] = z;
-        }
-
-        element.geometry.computeFaceNormals();
-        element.geometry.computeVertexNormals();
-        element.geometry.normalsNeedUpdate = true;
-    });
-
-    //The start location
-    object.rotation.x = Math.PI/2 - Math.PI/8;
-    object.rotation.z = Math.PI/2 + Math.PI/8;
-
-
-    scene.add(object);
 } );
 
 function render()
