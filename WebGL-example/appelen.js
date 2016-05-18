@@ -13,8 +13,8 @@ scene.add(flashlight);
 //var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.6 );
 //directionalLight.position.set( 20, 0, 20 );
 //scene.add( directionalLight );
-
 scene.add(new THREE.AmbientLight(0x404040));
+
 
 
 
@@ -34,13 +34,17 @@ else if (el.attachEvent) {
 
 
 /****************************************
- SKAPAR GLOBEN
+            SKAPAR GLOBEN
  ***************************************/
 var sphere = new THREE.SphereGeometry(10.5, 32, 32);
 var material = new THREE.MeshPhongMaterial({ color: 0x4fa1ec} );
 var earthMesh = new THREE.Mesh( sphere, material);
 scene.add(earthMesh);
 
+
+/****************************************
+            SKAPAR BAKGRUNDEN
+ ***************************************/
 var geometryStars = new THREE.SphereGeometry(50, 32, 32);
 var materialStars = new THREE.MeshBasicMaterial();
 materialStars.map = THREE.ImageUtils.loadTexture('Bilder/stars.png');
@@ -49,7 +53,9 @@ var starMesh = new THREE.Mesh(geometryStars, materialStars);
 scene.add(starMesh);
 
 
-//Controll
+/****************************************
+            ORBIT CONTROLS
+ ***************************************/
 var controls = new THREE.OrbitControls(camera,renderer.domElement);
 //controls.addEventListener('change', render);
 controls.enableDamping = true;
@@ -60,7 +66,6 @@ controls.enableZoom = true;
 controls.minDistance = 30;
 controls.maxDistance = 60;
 
-
 //updatera så att ljuset följer kameran
 controls.addEventListener('change', light_update)
 function light_update() {
@@ -70,7 +75,7 @@ function light_update() {
 
 
 /****************************************
- LÄS IN KARTAN
+            LÄS IN KARTAN
  ***************************************/
 var manager = new THREE.LoadingManager();
 manager.onProgress = function (item, loaded, total)
@@ -85,7 +90,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
     /****************************************
-     SKALA OM KONTINENTER
+                SKALA OM KONTINENTER
      ***************************************/
 
     var scAsia = 12;
@@ -146,42 +151,44 @@ loader.load('thisistheultimatemap.obj', function (object) {
                             ÄNDRA FÄRGER
      ****************************************************/
 
+    var color = [0xd5832, 0x4e8342, 0x6fa13f, 0x9ab438, 0xdfa943, 0xcc3f3f];
+
     function scaleColor(scale) {
 
         if (scale >= 1 && scale < 1.5) {
-            var material = new THREE.MeshPhongMaterial({ color: 0x2d5832} );
+            var material = new THREE.MeshPhongMaterial({ color: color[0]} );
         }
 
         else if (scale >= 1.5 && scale < 2) {
-            var material = new THREE.MeshPhongMaterial({ color: 0x4e8342} );
+            var material = new THREE.MeshPhongMaterial({ color: color[1]} );
         }
 
         else if (scale >= 2 && scale < 2.5) {
-            var material = new THREE.MeshPhongMaterial({ color: 0x6fa13f} );
+            var material = new THREE.MeshPhongMaterial({ color: color[2]} );
         }
 
         else if (scale >= 2.5 && scale < 3) {
-            var material = new THREE.MeshPhongMaterial({ color: 0x9ab438} );
+            var material = new THREE.MeshPhongMaterial({ color: color[3]} );
         }
 
         else if (scale >= 3 && scale < 4) {
-            var material = new THREE.MeshPhongMaterial({ color: 0xdfa943} );
+            var material = new THREE.MeshPhongMaterial({ color: color[4]} );
         }
 
         else {
-            var material = new THREE.MeshPhongMaterial({ color: 0xcc3f3f} );
+            var material = new THREE.MeshPhongMaterial({ color: color[5]} );
         }
 
         return material;
 
     }
 
-    Asia.material = scaleColor(12);
-    Oceanien.material = scaleColor(1);
-    Europe.material = scaleColor(2);
-    Northamerica.material = scaleColor(1);
-    Southamerica.material = scaleColor(1.8);
-    Africa.material = scaleColor(3.2);
+    Asia.material = scaleColor(scAsia);
+    Oceanien.material = scaleColor(scOceanien);
+    Europe.material = scaleColor(scEurope);
+    Northamerica.material = scaleColor(scNorthamerica);
+    Southamerica.material = scaleColor(scSouthamerica);
+    Africa.material = scaleColor(scAfrica);
 
     /****************************************
      GÖR KARTAN TILL EN SFÄR
@@ -213,6 +220,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
         }
 
         element.geometry.computeFaceNormals();
+        element.geometry.computeVertexNormals()
         element.geometry.normalsNeedUpdate = true;
     });
 
@@ -220,8 +228,8 @@ loader.load('thisistheultimatemap.obj', function (object) {
     object.rotation.x = Math.PI/2 - Math.PI/8;
     object.rotation.z = Math.PI/2 + Math.PI/8;
 
-    scene.add(object);
 
+    scene.add(object);
 } );
 
 
