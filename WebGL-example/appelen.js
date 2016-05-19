@@ -127,6 +127,10 @@ var loader = new THREE.OBJLoader(manager);
 loader.load('thisistheultimatemap.obj', function (object) {
     scene.remove(Asia);
     scene.remove(Africa);
+    scene.remove(Europe);
+    scene.remove(Oceanien);
+    scene.remove(Northamerica);
+    scene.remove(Southamerica);
     console.log('object');
 
 
