@@ -39,6 +39,7 @@ function doFunction(AF, AS, EU, OC, SA, NA) {
 
     console.log("population");
 }
+
 var el = document.getElementById("population");
 if (el.addEventListener)
     el.addEventListener("click", doFunction, false);
@@ -56,8 +57,6 @@ else if (el.attachEvent) {
 
 
 function changeAttributeTwo() {
-
-
     console.log("medellivslängd");
 }
 
