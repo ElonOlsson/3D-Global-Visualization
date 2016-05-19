@@ -121,12 +121,14 @@ manager.onProgress = function (item, loaded, total)
 
 
 createWorld();
+
 function createWorld() {
 
 var loader = new THREE.OBJLoader(manager);
 loader.load('thisistheultimatemap.obj', function (object) {
 
     console.log('object');
+
 
 
     /****************************************
@@ -154,14 +156,18 @@ loader.load('thisistheultimatemap.obj', function (object) {
         positionAsia[i+2] =z;
 
     }
+    console.log(scAsia);
+
     Asia.geometry.computeFaceNormals();
     Asia.geometry.computeVertexNormals();
     Asia.geometry.normalsNeedUpdate = true;
 
     Asia.rotation.x = Math.PI/2 - Math.PI/8;
     Asia.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Asia);
 
+    if(counter==0) {
+        scene.add(Asia);
+    }
 
 
     /************ OCEANIEN ****************/
@@ -224,7 +230,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
     /************ NORDAMERIKA ****************/
-
+/*
     Northamerica = object.getObjectByName("Nordamerika");
     var positionNorthamerica = Northamerica.geometry.attributes.position.array;
     var uvpositionNA = Northamerica.geometry.attributes.uv.array;
@@ -240,7 +246,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
         positionNorthamerica[i] = x;
         positionNorthamerica[i+1] = y;
-        positionNorthamerica[i+2] =z;
+        positionNorthamerica[i+2] = z;
 
     }
     Northamerica.geometry.computeFaceNormals();
@@ -250,11 +256,11 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     Northamerica.rotation.x = Math.PI/2 - Math.PI/8;
     Northamerica.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Northamerica);
+    scene.add(Northamerica);*/
 
 
     /************ SYDAMERIKA ****************/
-
+/*
     Southamerica = object.getObjectByName("Sydamerika");
     var positionSouthamerica = Southamerica.geometry.attributes.position.array;
     var uvpositionSA = Southamerica.geometry.attributes.uv.array;
@@ -279,11 +285,11 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     Southamerica.rotation.x = Math.PI/2 - Math.PI/8;
     Southamerica.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Southamerica);
+    scene.add(Southamerica);*/
 
 
     /************ AFRIKA ****************/
-
+/*
     Africa = object.getObjectByName("Afrika");
     var positionAfrica = Africa.geometry.attributes.position.array;
     var uvpositionAF = Africa.geometry.attributes.uv.array;
@@ -308,7 +314,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     Africa.rotation.x = Math.PI/2 - Math.PI/8;
     Africa.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Africa);
+    scene.add(Africa);*/
 
 
 
@@ -426,6 +432,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
     scene.add(object);*/
 
 } );
+
 }
 
 function render()
