@@ -24,8 +24,13 @@
       <file leaf-file-name="appelen.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/appelen.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-154">
               <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+=======
+            <state relative-caret-position="-336">
+              <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+>>>>>>> 80a27062e20287c3d7211a8356ae017ba38a5f11
               <folding />
             </state>
           </provider>
@@ -34,8 +39,13 @@
       <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="278">
               <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+=======
+            <state relative-caret-position="320">
+              <caret line="20" column="80" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="80" />
+>>>>>>> 80a27062e20287c3d7211a8356ae017ba38a5f11
               <folding />
             </state>
           </provider>
@@ -44,8 +54,13 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/style.css">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="198">
               <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+=======
+            <state relative-caret-position="-109">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+>>>>>>> 80a27062e20287c3d7211a8356ae017ba38a5f11
               <folding />
             </state>
           </provider>
@@ -84,10 +99,17 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1938" />
     <option name="height" value="1048" />
+=======
+    <option name="x" value="84" />
+    <option name="y" value="22" />
+    <option name="width" value="1280" />
+    <option name="height" value="715" />
+>>>>>>> 80a27062e20287c3d7211a8356ae017ba38a5f11
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -224,13 +246,21 @@
       <workItem from="1463128255126" duration="8975000" />
       <workItem from="1463150158622" duration="22000" />
       <workItem from="1463318889761" duration="11855000" />
+<<<<<<< HEAD
       <workItem from="1463564379783" duration="25753000" />
       <workItem from="1463645434679" duration="1437000" />
+=======
+      <workItem from="1463564379783" duration="27049000" />
+>>>>>>> 80a27062e20287c3d7211a8356ae017ba38a5f11
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="88872000" />
+=======
+    <option name="totallyTimeSpent" value="88731000" />
+>>>>>>> 80a27062e20287c3d7211a8356ae017ba38a5f11
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -242,7 +272,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+=======
+    <frame x="84" y="22" width="1280" height="715" extended-state="0" />
+>>>>>>> 80a27062e20287c3d7211a8356ae017ba38a5f11
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.140625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -560,24 +594,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/style.css">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="198">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+=======
+        <state relative-caret-position="-109">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+>>>>>>> 80a27062e20287c3d7211a8356ae017ba38a5f11
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="278">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+=======
+        <state relative-caret-position="320">
+          <caret line="20" column="80" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="80" />
+>>>>>>> 80a27062e20287c3d7211a8356ae017ba38a5f11
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/appelen.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-154">
           <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+=======
+        <state relative-caret-position="-336">
+          <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+>>>>>>> 80a27062e20287c3d7211a8356ae017ba38a5f11
           <folding />
         </state>
       </provider>
