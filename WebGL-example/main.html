@@ -10,16 +10,54 @@
 <body>
 <div id="container">
     <!--Continent order: Africa, Asia, Europe, Oceania, South america, North america-->
-    <div id="bottonOne" class="buttonClass">
+    <div id="bottonOne" class="buttonClass" onclick="showPopulation()">
         <button id="population" class="button" onclick="createWorld(3.5, 12, 2, 1, 1.8, 1)"> POPULATION</button>
     </div>
 
-    <div id="bottonTwo" class="buttonClass">
+    <div id="continentsText" class="text" style="display:none">
+        <p>Africa:</p>
+        <p>Asia:</p>
+        <p>Europe:</p>
+        <p>North America:</p>
+        <p>Oceania</p>
+        <p>South America</p>
+
+    </div>
+
+    <div id="populationText" class="text" style="display:none">
+        <p>1.212 billion</p>
+        <p>4.430 billion</p>
+        <p>739 million</p>
+        <p>360 million</p>
+        <p>40 million</p>
+        <p>640 million</p>
+
+    </div>
+
+    <div id="bottonTwo" class="buttonClass" onclick="showLifeEx()">
         <button id="medellivslängd" class="button" onclick="createWorld(1, 5, 3, 2, 9, 10)">LIFE EXPECTANCY</button>
     </div>
 
 
 </div>
+
+    <script>
+        function showPopulation() {
+            document.getElementById('populationText').style.display = "block";
+            document.getElementById('continentsText').style.display = "block";
+            document.getElementById('continentsText').style.top = "50px";
+            document.getElementById('bottonTwo').style.top = '230px';
+        }
+
+        function showLifeEx() {
+            document.getElementById('populationText').style.display = "none";
+            document.getElementById('continentsText').style.display = "block";
+            document.getElementById('continentsText').style.top = "90px";
+            document.getElementById('bottonTwo').style.top = "60px";
+
+        }
+
+    </script>
 
     <script src = "OrbitControls.js"></script>
     <script src = "egenOBJLoader.js"></script>

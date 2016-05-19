@@ -2,6 +2,11 @@ body{
     margin: 0 0 0 0;
 }
 
+p{
+    margin: 2px;
+}
+
+
 /*divs*/
 
 #bottonOne
@@ -12,13 +17,12 @@ body{
 }
 #bottonTwo
 {
-
-    top: 50px;
+    top: 60px;
 }
 
 /*Classes*/
 
-.buttonClass{
+.buttonClass {
     position: absolute;
     left: 50px;
     width: 200px;
@@ -27,7 +31,19 @@ body{
     z-index: 1;
 }
 
-/*Buttons*/
+.text {
+    position: absolute;
+    background-color: transparent;
+    color: white;
+    font-size:20px;
+    left: 70px;
+    width: 200px;
+    height: 10px;
+    opacity: 1;
+    z-index: 1;
+}
+
+/*Buttons div*/
 
 .button {
     font-size:20px;
@@ -38,3 +54,14 @@ body{
 
 }
 
+/*Text*/
+
+#continentsText {
+
+}
+
+#populationText {
+    top: 50px;
+    left: 220px;
+
+}
