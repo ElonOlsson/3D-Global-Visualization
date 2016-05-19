@@ -21,7 +21,9 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("container").appendChild(renderer.domElement);
 //document.getElementById("clickMe").onclick = doFunction(10);
 
-var Asia;
+var Asia, Europe, Africa, Southamerica, Northamerica, Oceanien;
+var theta, phi, r;
+var x, y, z;
 var scAsia = 12;
 var scOceanien = 1;
 var scEurope = 2;
@@ -29,7 +31,7 @@ var scNorthamerica = 1;
 var scSouthamerica = 1.8;
 var scAfrica = 3;
 
-function doFunction(AF, AS, EU, OC, SA, NA) {
+function buttonPopulation(AF, AS, EU, OC, SA, NA) {
     scAsia = AS;
     scOceanien = OC;
     scEurope = EU;
@@ -38,38 +40,32 @@ function doFunction(AF, AS, EU, OC, SA, NA) {
     scAfrica = AF;
 
     console.log("population");
-}
-var el = document.getElementById("population");
-if (el.addEventListener)
-    el.addEventListener("click", doFunction, false);
-
-else if (el.attachEvent) {
-    el.attachEvent('onclick', doFunction);
-}
-var el = document.getElementById("medellivslängd");
-if (el.addEventListener)
-    el.addEventListener("click", doFunction, false);
-
-else if (el.attachEvent) {
-    el.attachEvent('onclick', doFunction);
+    createWorld();
 }
 
-
-function changeAttributeTwo() {
-
-
+function buttonLifeExpecantcy() {
     console.log("medellivslängd");
 }
 
 
+var el1 = document.getElementById("population");
+if (el1.addEventListener)
+    el1.addEventListener("click", buttonPopulation, false);
 
-var el = document.getElementById("population");
-if (el.addEventListener)
-    el.addEventListener("click", changeAttributeTwo, false);
-
-else if (el.attachEvent) {
-    el.attachEvent('onclick', changeAttributeTwo);
+else if (el1.attachEvent) {
+    el1.attachEvent('onclick', buttonPopulation);
 }
+
+
+var el2 = document.getElementById("medellivslängd");
+if (el2.addEventListener)
+    el2.addEventListener("click", buttonLifeExpecantcy, false);
+
+else if (el2.attachEvent) {
+    el2.attachEvent('onclick', buttonLifeExpecantcy);
+}
+
+
 
 
 
@@ -124,6 +120,9 @@ manager.onProgress = function (item, loaded, total)
 };
 
 
+createWorld();
+function createWorld() {
+
 var loader = new THREE.OBJLoader(manager);
 loader.load('thisistheultimatemap.obj', function (object) {
 
@@ -142,13 +141,13 @@ loader.load('thisistheultimatemap.obj', function (object) {
     var uvpositionAS = Asia.geometry.attributes.uv.array;
 
     for(i=0, j=0; i<=positionAsia.length; i +=3, j +=2) {
-        var theta = (uvpositionAS[j+1])*-Math.PI; //U
-        var phi = (uvpositionAS[j]-0.5)*2*-Math.PI; //V
-        var r = (positionAsia[i+2]*scAsia+10);
+        theta = (uvpositionAS[j+1])*-Math.PI; //U
+        phi = (uvpositionAS[j]-0.5)*2*-Math.PI; //V
+        r = (positionAsia[i+2]*scAsia+10);
 
-        var x = r*Math.sin(theta)*Math.cos(phi);
-        var y = r*Math.sin(theta)*Math.sin(phi);
-        var z = r*Math.cos(theta);
+        x = r*Math.sin(theta)*Math.cos(phi);
+        y = r*Math.sin(theta)*Math.sin(phi);
+        z = r*Math.cos(theta);
 
         positionAsia[i] = x;
         positionAsia[i+1] = y;
@@ -167,18 +166,18 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     /************ OCEANIEN ****************/
 
-    var Oceanien = object.getObjectByName("Oceanien");
+    Oceanien = object.getObjectByName("Oceanien");
     var positionOceanien = Oceanien.geometry.attributes.position.array;
     var uvpositionOC = Oceanien.geometry.attributes.uv.array;
 
     for(i=0, j=0; i<=positionOceanien.length; i +=3, j +=2) {
-        var theta = (uvpositionOC[j+1])*-Math.PI; //U
-        var phi = (uvpositionOC[j]-0.5)*2*-Math.PI; //V
-        var r = (positionOceanien[i+2]*scOceanien+10);
+        theta = (uvpositionOC[j+1])*-Math.PI; //U
+        phi = (uvpositionOC[j]-0.5)*2*-Math.PI; //V
+        r = (positionOceanien[i+2]*scOceanien+10);
 
-        var x = r*Math.sin(theta)*Math.cos(phi);
-        var y = r*Math.sin(theta)*Math.sin(phi);
-        var z = r*Math.cos(theta);
+        x = r*Math.sin(theta)*Math.cos(phi);
+        y = r*Math.sin(theta)*Math.sin(phi);
+        z = r*Math.cos(theta);
 
         positionOceanien[i] = x;
         positionOceanien[i+1] = y;
@@ -196,18 +195,18 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     /************ EUROPA ****************/
 
-    var Europe = object.getObjectByName("Europa");
+    Europe = object.getObjectByName("Europa");
     var positionEurope= Europe.geometry.attributes.position.array;
     var uvpositionEU = Europe.geometry.attributes.uv.array;
 
     for(i=0, j=0; i<=positionEurope.length; i +=3, j +=2) {
-        var theta = (uvpositionEU[j+1])*-Math.PI; //U
-        var phi = (uvpositionEU[j]-0.5)*2*-Math.PI; //V
-        var r = (positionEurope[i+2]*scEurope+10);
+        theta = (uvpositionEU[j+1])*-Math.PI; //U
+        phi = (uvpositionEU[j]-0.5)*2*-Math.PI; //V
+        r = (positionEurope[i+2]*scEurope+10);
 
-        var x = r*Math.sin(theta)*Math.cos(phi);
-        var y = r*Math.sin(theta)*Math.sin(phi);
-        var z = r*Math.cos(theta);
+        x = r*Math.sin(theta)*Math.cos(phi);
+        y = r*Math.sin(theta)*Math.sin(phi);
+        z = r*Math.cos(theta);
 
         positionEurope[i] = x;
         positionEurope[i+1] = y;
@@ -226,18 +225,18 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     /************ NORDAMERIKA ****************/
 
-    var Northamerica = object.getObjectByName("Nordamerika");
+    Northamerica = object.getObjectByName("Nordamerika");
     var positionNorthamerica = Northamerica.geometry.attributes.position.array;
     var uvpositionNA = Northamerica.geometry.attributes.uv.array;
 
     for(i=0, j=0; i<=positionNorthamerica.length; i +=3, j +=2) {
-        var theta = (uvpositionNA[j+1])*-Math.PI; //U
-        var phi = (uvpositionNA[j]-0.5)*2*-Math.PI; //V
-        var r = (positionNorthamerica[i+2]*scNorthamerica+10);
+        theta = (uvpositionNA[j+1])*-Math.PI; //U
+        phi = (uvpositionNA[j]-0.5)*2*-Math.PI; //V
+        r = (positionNorthamerica[i+2]*scNorthamerica+10);
 
-        var x = r*Math.sin(theta)*Math.cos(phi);
-        var y = r*Math.sin(theta)*Math.sin(phi);
-        var z = r*Math.cos(theta);
+        x = r*Math.sin(theta)*Math.cos(phi);
+        y = r*Math.sin(theta)*Math.sin(phi);
+        z = r*Math.cos(theta);
 
         positionNorthamerica[i] = x;
         positionNorthamerica[i+1] = y;
@@ -256,18 +255,18 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     /************ SYDAMERIKA ****************/
 
-    var Southamerica = object.getObjectByName("Sydamerika");
+    Southamerica = object.getObjectByName("Sydamerika");
     var positionSouthamerica = Southamerica.geometry.attributes.position.array;
     var uvpositionSA = Southamerica.geometry.attributes.uv.array;
 
     for(i=0, j=0; i<=positionSouthamerica.length; i +=3, j +=2) {
-        var theta = (uvpositionSA[j+1])*-Math.PI; //U
-        var phi = (uvpositionSA[j]-0.5)*2*-Math.PI; //V
-        var r = (positionSouthamerica[i+2]*scSouthamerica+10);
+        theta = (uvpositionSA[j+1])*-Math.PI; //U
+        phi = (uvpositionSA[j]-0.5)*2*-Math.PI; //V
+        r = (positionSouthamerica[i+2]*scSouthamerica+10);
 
-        var x = r*Math.sin(theta)*Math.cos(phi);
-        var y = r*Math.sin(theta)*Math.sin(phi);
-        var z = r*Math.cos(theta);
+        x = r*Math.sin(theta)*Math.cos(phi);
+        y = r*Math.sin(theta)*Math.sin(phi);
+        z = r*Math.cos(theta);
 
         positionSouthamerica[i] = x;
         positionSouthamerica[i+1] = y;
@@ -285,18 +284,18 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     /************ AFRIKA ****************/
 
-    var Africa = object.getObjectByName("Afrika");
+    Africa = object.getObjectByName("Afrika");
     var positionAfrica = Africa.geometry.attributes.position.array;
     var uvpositionAF = Africa.geometry.attributes.uv.array;
 
     for(i=0, j=0; i<=positionAfrica.length; i +=3, j +=2) {
-        var theta = (uvpositionAF[j+1])*-Math.PI; //U
-        var phi = (uvpositionAF[j]-0.5)*2*-Math.PI; //V
-        var r = (positionAfrica[i+2]*scAfrica+10);
+        theta = (uvpositionAF[j+1])*-Math.PI; //U
+        phi = (uvpositionAF[j]-0.5)*2*-Math.PI; //V
+        r = (positionAfrica[i+2]*scAfrica+10);
 
-        var x = r*Math.sin(theta)*Math.cos(phi);
-        var y = r*Math.sin(theta)*Math.sin(phi);
-        var z = r*Math.cos(theta);
+        x = r*Math.sin(theta)*Math.cos(phi);
+        y = r*Math.sin(theta)*Math.sin(phi);
+        z = r*Math.cos(theta);
 
         positionAfrica[i] = x;
         positionAfrica[i+1] = y;
@@ -427,7 +426,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
     scene.add(object);*/
 
 } );
-
+}
 
 function render()
 {
