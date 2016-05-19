@@ -1,11 +1,10 @@
-
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1,10000);
-camera.position.set( 0, 0, -40 );
+var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 10000);
+camera.position.set(0, 0, -40);
 
 // ljuskälla, follows the camera. camera child to scene, light child to camera
 scene.add(camera);
-var flashlight = new THREE.PointLight(0xffffff,1,100);
+var flashlight = new THREE.PointLight(0xffffff, 1, 100);
 flashlight.target = camera;
 flashlight.position.copy(camera.position);
 scene.add(flashlight);
@@ -19,69 +18,26 @@ scene.add(new THREE.AmbientLight(0x404040));
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("container").appendChild(renderer.domElement);
-//document.getElementById("clickMe").onclick = doFunction(10);
+
 
 /*******************************************
-                 DECLARATIONS
+ DECLARATIONS
  ********************************************/
 
 var Asia, Europe, Africa, Southamerica, Northamerica, Oceanien;
 var theta, phi, r;
 var x, y, z;
 
-/*******************************************
-        BUTTONFUNCTIONS
-********************************************/
-
-function doFunction(AF, AS, EU, OC, SA, NA) {
-    scAsia = AS;
-    scOceanien = OC;
-    scEurope = EU;
-    scNorthamerica = NA;
-    scSouthamerica = SA;
-    scAfrica = AF;
-    
-    createWorld(AF, AS, EU, OC, SA, NA);
-}
-
-
-
-var el1 = document.getElementById("population");
-if (el1.addEventListener)
-    el1.addEventListener("click", doFunction, false);
-
-else if (el1.attachEvent) {
-    el1.attachEvent('onclick', doFunction);
-}
-
-
-var el2 = document.getElementById("medellivslängd");
-if (el2.addEventListener)
-    el2.addEventListener("click", doFunction, false);
-
-else if (el2.attachEvent) {
-    el2.attachEvent('onclick', doFunction);
-}
-
-
-
-
-
-
-
-
-
 /****************************************
-            SKAPAR GLOBEN
+ CREATE SPHERE
  ***************************************/
 var sphere = new THREE.SphereGeometry(10.5, 32, 32);
-var material = new THREE.MeshPhongMaterial({shininess: 20, color: 0x3a6698} );
-var earthMesh = new THREE.Mesh( sphere, material);
+var material = new THREE.MeshPhongMaterial({shininess: 20, color: 0x3a6698});
+var earthMesh = new THREE.Mesh(sphere, material);
 scene.add(earthMesh);
 
-
 /****************************************
-            SKAPAR BAKGRUNDEN
+ CREATE BACKGROUND
  ***************************************/
 var geometryStars = new THREE.SphereGeometry(50, 32, 32);
 var materialStars = new THREE.MeshBasicMaterial();
@@ -92,10 +48,10 @@ scene.add(starMesh);
 
 
 /****************************************
-            ORBIT CONTROLS
+ ORBIT CONTROLS
  ***************************************/
-var controls = new THREE.OrbitControls(camera,renderer.domElement);
-//controls.addEventListener('change', render);
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
 controls.enableDamping = true;
 controls.dampingFactor = 0.9;
 controls.enableZoom = true;
@@ -111,335 +67,328 @@ function light_update() {
 }
 
 
-
 /****************************************
-            LÄS IN KARTAN
+ LOAD WORLD MAP
  ***************************************/
 var manager = new THREE.LoadingManager();
-manager.onProgress = function (item, loaded, total)
-{
+manager.onProgress = function (item, loaded, total) {
     console.log(item, loaded, total);
 };
 
-
-
-
 createWorld(1, 1, 1, 1, 1, 1);
+//AF, AS, EU, OC, SA, NA
+function createWorld(scAfrica, scAsia, scEurope, scOceanien, scSouthamerica, scNorthamerica) {
+    var loader = new THREE.OBJLoader(manager);
+    loader.load('thisistheultimatemap.obj', function (object) {
 
-function createWorld( scAsia, scOceanien, scEurope, scNorthamerica , scSouthamerica, scAfrica ) {
+        scene.remove(Asia);
+        scene.remove(Africa);
+        scene.remove(Europe);
+        scene.remove(Oceanien);
+        scene.remove(Northamerica);
+        scene.remove(Southamerica);
 
-var loader = new THREE.OBJLoader(manager);
-loader.load('thisistheultimatemap.obj', function (object) {
+        console.log('object');
 
-    console.log('object');
+        /****************************************
+         CREATE CONTINENTS
+         ***************************************/
 
 
+        /************ ASIA ****************/
 
-    /****************************************
-     SKALA OM KONTINENTER OCH GÖR TILL SFÄR
-     ***************************************/
+        Asia = object.getObjectByName("Asien");
+        var positionAsia = Asia.geometry.attributes.position.array;
+        var uvpositionAS = Asia.geometry.attributes.uv.array;
 
+        for (i = 0, j = 0; i <= positionAsia.length; i += 3, j += 2) {
+            theta = (uvpositionAS[j + 1]) * -Math.PI; //U
+            phi = (uvpositionAS[j] - 0.5) * 2 * -Math.PI; //V
+            r = (positionAsia[i + 2] * scAsia + 10);
 
-    /************ ASIEN ****************/
+            x = r * Math.sin(theta) * Math.cos(phi);
+            y = r * Math.sin(theta) * Math.sin(phi);
+            z = r * Math.cos(theta);
 
+            positionAsia[i] = x;
+            positionAsia[i + 1] = y;
+            positionAsia[i + 2] = z;
 
-    Asia = object.getObjectByName("Asien");
-    var positionAsia = Asia.geometry.attributes.position.array;
-    var uvpositionAS = Asia.geometry.attributes.uv.array;
+        }
+        console.log(scAsia);
 
-    for(i=0, j=0; i<=positionAsia.length; i +=3, j +=2) {
-        theta = (uvpositionAS[j+1])*-Math.PI; //U
-        phi = (uvpositionAS[j]-0.5)*2*-Math.PI; //V
-        r = (positionAsia[i+2]*scAsia+10);
+        Asia.geometry.computeFaceNormals();
+        Asia.geometry.computeVertexNormals();
+        Asia.geometry.normalsNeedUpdate = true;
 
-        x = r*Math.sin(theta)*Math.cos(phi);
-        y = r*Math.sin(theta)*Math.sin(phi);
-        z = r*Math.cos(theta);
+        Asia.rotation.x = Math.PI / 2 - Math.PI / 8;
+        Asia.rotation.z = Math.PI / 2 + Math.PI / 8;
+        scene.add(Asia);
 
-        positionAsia[i] = x;
-        positionAsia[i+1] = y;
-        positionAsia[i+2] =z;
 
-    }
-    console.log(scAsia);
+        /************ OCEANIA ****************/
 
-    Asia.geometry.computeFaceNormals();
-    Asia.geometry.computeVertexNormals();
-    Asia.geometry.normalsNeedUpdate = true;
+        Oceanien = object.getObjectByName("Oceanien");
+        var positionOceanien = Oceanien.geometry.attributes.position.array;
+        var uvpositionOC = Oceanien.geometry.attributes.uv.array;
 
-    Asia.rotation.x = Math.PI/2 - Math.PI/8;
-    Asia.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Asia);
+        for (i = 0, j = 0; i <= positionOceanien.length; i += 3, j += 2) {
+            theta = (uvpositionOC[j + 1]) * -Math.PI; //U
+            phi = (uvpositionOC[j] - 0.5) * 2 * -Math.PI; //V
+            r = (positionOceanien[i + 2] * scOceanien + 10);
 
+            x = r * Math.sin(theta) * Math.cos(phi);
+            y = r * Math.sin(theta) * Math.sin(phi);
+            z = r * Math.cos(theta);
 
+            positionOceanien[i] = x;
+            positionOceanien[i + 1] = y;
+            positionOceanien[i + 2] = z;
 
-    /************ OCEANIEN ****************/
+        }
+        Oceanien.geometry.computeFaceNormals();
+        Oceanien.geometry.computeVertexNormals();
+        Oceanien.geometry.normalsNeedUpdate = true;
 
-    Oceanien = object.getObjectByName("Oceanien");
-    var positionOceanien = Oceanien.geometry.attributes.position.array;
-    var uvpositionOC = Oceanien.geometry.attributes.uv.array;
+        Oceanien.rotation.x = Math.PI / 2 - Math.PI / 8;
+        Oceanien.rotation.z = Math.PI / 2 + Math.PI / 8;
+        scene.add(Oceanien);
 
-    for(i=0, j=0; i<=positionOceanien.length; i +=3, j +=2) {
-        theta = (uvpositionOC[j+1])*-Math.PI; //U
-        phi = (uvpositionOC[j]-0.5)*2*-Math.PI; //V
-        r = (positionOceanien[i+2]*scOceanien+10);
 
-        x = r*Math.sin(theta)*Math.cos(phi);
-        y = r*Math.sin(theta)*Math.sin(phi);
-        z = r*Math.cos(theta);
+        /************ EUROPE ****************/
 
-        positionOceanien[i] = x;
-        positionOceanien[i+1] = y;
-        positionOceanien[i+2] =z;
+        Europe = object.getObjectByName("Europa");
+        var positionEurope = Europe.geometry.attributes.position.array;
+        var uvpositionEU = Europe.geometry.attributes.uv.array;
 
-    }
-    Oceanien.geometry.computeFaceNormals();
-    Oceanien.geometry.computeVertexNormals();
-    Oceanien.geometry.normalsNeedUpdate = true;
+        for (i = 0, j = 0; i <= positionEurope.length; i += 3, j += 2) {
+            theta = (uvpositionEU[j + 1]) * -Math.PI; //U
+            phi = (uvpositionEU[j] - 0.5) * 2 * -Math.PI; //V
+            r = (positionEurope[i + 2] * scEurope + 10);
 
-    Oceanien.rotation.x = Math.PI/2 - Math.PI/8;
-    Oceanien.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Oceanien);
+            x = r * Math.sin(theta) * Math.cos(phi);
+            y = r * Math.sin(theta) * Math.sin(phi);
+            z = r * Math.cos(theta);
 
+            positionEurope[i] = x;
+            positionEurope[i + 1] = y;
+            positionEurope[i + 2] = z;
 
-    /************ EUROPA ****************/
 
-    Europe = object.getObjectByName("Europa");
-    var positionEurope= Europe.geometry.attributes.position.array;
-    var uvpositionEU = Europe.geometry.attributes.uv.array;
+        }
+        Europe.geometry.computeFaceNormals();
+        Europe.geometry.computeVertexNormals();
+        Europe.geometry.normalsNeedUpdate = true;
 
-    for(i=0, j=0; i<=positionEurope.length; i +=3, j +=2) {
-        theta = (uvpositionEU[j+1])*-Math.PI; //U
-        phi = (uvpositionEU[j]-0.5)*2*-Math.PI; //V
-        r = (positionEurope[i+2]*scEurope+10);
+        Europe.rotation.x = Math.PI / 2 - Math.PI / 8;
+        Europe.rotation.z = Math.PI / 2 + Math.PI / 8;
+        scene.add(Europe);
 
-        x = r*Math.sin(theta)*Math.cos(phi);
-        y = r*Math.sin(theta)*Math.sin(phi);
-        z = r*Math.cos(theta);
 
-        positionEurope[i] = x;
-        positionEurope[i+1] = y;
-        positionEurope[i+2] =z;
+        /************ NORTH AMERICA ****************/
 
+        Northamerica = object.getObjectByName("Nordamerika");
+        var positionNorthamerica = Northamerica.geometry.attributes.position.array;
+        var uvpositionNA = Northamerica.geometry.attributes.uv.array;
 
-    }
-    Europe.geometry.computeFaceNormals();
-    Europe.geometry.computeVertexNormals();
-    Europe.geometry.normalsNeedUpdate = true;
+        for (i = 0, j = 0; i <= positionNorthamerica.length; i += 3, j += 2) {
+            theta = (uvpositionNA[j + 1]) * -Math.PI; //U
+            phi = (uvpositionNA[j] - 0.5) * 2 * -Math.PI; //V
+            r = (positionNorthamerica[i + 2] * scNorthamerica + 10);
 
-    Europe.rotation.x = Math.PI/2 - Math.PI/8;
-    Europe.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Europe);
+            x = r * Math.sin(theta) * Math.cos(phi);
+            y = r * Math.sin(theta) * Math.sin(phi);
+            z = r * Math.cos(theta);
 
+            positionNorthamerica[i] = x;
+            positionNorthamerica[i + 1] = y;
+            positionNorthamerica[i + 2] = z;
 
-    /************ NORDAMERIKA ****************/
+        }
+        Northamerica.geometry.computeFaceNormals();
+        Northamerica.geometry.computeVertexNormals();
+        Northamerica.geometry.normalsNeedUpdate = true;
 
-    Northamerica = object.getObjectByName("Nordamerika");
-    var positionNorthamerica = Northamerica.geometry.attributes.position.array;
-    var uvpositionNA = Northamerica.geometry.attributes.uv.array;
 
-    for(i=0, j=0; i<=positionNorthamerica.length; i +=3, j +=2) {
-        theta = (uvpositionNA[j+1])*-Math.PI; //U
-        phi = (uvpositionNA[j]-0.5)*2*-Math.PI; //V
-        r = (positionNorthamerica[i+2]*scNorthamerica+10);
+        Northamerica.rotation.x = Math.PI / 2 - Math.PI / 8;
+        Northamerica.rotation.z = Math.PI / 2 + Math.PI / 8;
+        scene.add(Northamerica);
 
-        x = r*Math.sin(theta)*Math.cos(phi);
-        y = r*Math.sin(theta)*Math.sin(phi);
-        z = r*Math.cos(theta);
 
-        positionNorthamerica[i] = x;
-        positionNorthamerica[i+1] = y;
-        positionNorthamerica[i+2] = z;
+        /************ SOUTH AMERICA ****************/
 
-    }
-    Northamerica.geometry.computeFaceNormals();
-    Northamerica.geometry.computeVertexNormals();
-    Northamerica.geometry.normalsNeedUpdate = true;
+        Southamerica = object.getObjectByName("Sydamerika");
+        var positionSouthamerica = Southamerica.geometry.attributes.position.array;
+        var uvpositionSA = Southamerica.geometry.attributes.uv.array;
 
+        for (i = 0, j = 0; i <= positionSouthamerica.length; i += 3, j += 2) {
+            theta = (uvpositionSA[j + 1]) * -Math.PI; //U
+            phi = (uvpositionSA[j] - 0.5) * 2 * -Math.PI; //V
+            r = (positionSouthamerica[i + 2] * scSouthamerica + 10);
 
-    Northamerica.rotation.x = Math.PI/2 - Math.PI/8;
-    Northamerica.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Northamerica);
+            x = r * Math.sin(theta) * Math.cos(phi);
+            y = r * Math.sin(theta) * Math.sin(phi);
+            z = r * Math.cos(theta);
 
+            positionSouthamerica[i] = x;
+            positionSouthamerica[i + 1] = y;
+            positionSouthamerica[i + 2] = z;
 
-    /************ SYDAMERIKA ****************/
+        }
+        Southamerica.geometry.computeFaceNormals();
+        Southamerica.geometry.computeVertexNormals();
+        Southamerica.geometry.normalsNeedUpdate = true;
 
-    Southamerica = object.getObjectByName("Sydamerika");
-    var positionSouthamerica = Southamerica.geometry.attributes.position.array;
-    var uvpositionSA = Southamerica.geometry.attributes.uv.array;
+        Southamerica.rotation.x = Math.PI / 2 - Math.PI / 8;
+        Southamerica.rotation.z = Math.PI / 2 + Math.PI / 8;
+        scene.add(Southamerica);
 
-    for(i=0, j=0; i<=positionSouthamerica.length; i +=3, j +=2) {
-        theta = (uvpositionSA[j+1])*-Math.PI; //U
-        phi = (uvpositionSA[j]-0.5)*2*-Math.PI; //V
-        r = (positionSouthamerica[i+2]*scSouthamerica+10);
 
-        x = r*Math.sin(theta)*Math.cos(phi);
-        y = r*Math.sin(theta)*Math.sin(phi);
-        z = r*Math.cos(theta);
+        /************ AFRICA ****************/
 
-        positionSouthamerica[i] = x;
-        positionSouthamerica[i+1] = y;
-        positionSouthamerica[i+2] =z;
+        Africa = object.getObjectByName("Afrika");
+        var positionAfrica = Africa.geometry.attributes.position.array;
+        var uvpositionAF = Africa.geometry.attributes.uv.array;
 
-    }
-    Southamerica.geometry.computeFaceNormals();
-    Southamerica.geometry.computeVertexNormals();
-    Southamerica.geometry.normalsNeedUpdate = true;
+        for (i = 0, j = 0; i <= positionAfrica.length; i += 3, j += 2) {
+            theta = (uvpositionAF[j + 1]) * -Math.PI; //U
+            phi = (uvpositionAF[j] - 0.5) * 2 * -Math.PI; //V
+            r = (positionAfrica[i + 2] * scAfrica + 10);
 
-    Southamerica.rotation.x = Math.PI/2 - Math.PI/8;
-    Southamerica.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Southamerica);
+            x = r * Math.sin(theta) * Math.cos(phi);
+            y = r * Math.sin(theta) * Math.sin(phi);
+            z = r * Math.cos(theta);
 
+            positionAfrica[i] = x;
+            positionAfrica[i + 1] = y;
+            positionAfrica[i + 2] = z;
 
-    /************ AFRIKA ****************/
+        }
+        Africa.geometry.computeFaceNormals();
+        Africa.geometry.computeVertexNormals();
+        Africa.geometry.normalsNeedUpdate = true;
 
-    Africa = object.getObjectByName("Afrika");
-    var positionAfrica = Africa.geometry.attributes.position.array;
-    var uvpositionAF = Africa.geometry.attributes.uv.array;
+        Africa.rotation.x = Math.PI / 2 - Math.PI / 8;
+        Africa.rotation.z = Math.PI / 2 + Math.PI / 8;
+        scene.add(Africa);
 
-    for(i=0, j=0; i<=positionAfrica.length; i +=3, j +=2) {
-        theta = (uvpositionAF[j+1])*-Math.PI; //U
-        phi = (uvpositionAF[j]-0.5)*2*-Math.PI; //V
-        r = (positionAfrica[i+2]*scAfrica+10);
 
-        x = r*Math.sin(theta)*Math.cos(phi);
-        y = r*Math.sin(theta)*Math.sin(phi);
-        z = r*Math.cos(theta);
+        /*****************************************************
+         CHANGE COLOR
+        *****************************************************/
 
-        positionAfrica[i] = x;
-        positionAfrica[i+1] = y;
-        positionAfrica[i+2] =z;
+        var color = [0xd5832, 0x4e8342, 0x6fa13f, 0x9ab438, 0xcedf43, //gröna
+            0xecee47, 0xeebb1f, //gula
+            0xffa330, 0xff8e30, 0xff7930, 0xdd5b2f, //orangea
+            0xcc4d3f, 0xcc3f3f];
 
-    }
-    Africa.geometry.computeFaceNormals();
-    Africa.geometry.computeVertexNormals();
-    Africa.geometry.normalsNeedUpdate = true;
 
-    Africa.rotation.x = Math.PI/2 - Math.PI/8;
-    Africa.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Africa);
+        function scaleColor(scale) {
 
+            if (scale >= 1 && scale < 1.5) {
+                var material = new THREE.MeshPhongMaterial({color: color[0]});
+            }
 
+            else if (scale >= 1.5 && scale < 2) {
+                var material = new THREE.MeshPhongMaterial({color: color[1]});
+            }
 
+            else if (scale >= 2 && scale < 2.5) {
+                var material = new THREE.MeshPhongMaterial({color: color[2]});
+            }
 
-    /*****************************************************
-                            ÄNDRA FÄRGER
-     ****************************************************/
+            else if (scale >= 2.5 && scale < 3) {
+                var material = new THREE.MeshPhongMaterial({color: color[3]});
+            }
 
-    var color = [0xd5832, 0x4e8342, 0x6fa13f, 0x9ab438, 0xcedf43, //gröna
-        0xecee47, 0xeebb1f, //gula
-        0xffa330, 0xff8e30, 0xff7930, 0xdd5b2f, //orangea
-        0xcc4d3f, 0xcc3f3f];
+            else if (scale >= 3 && scale < 4) {
+                var material = new THREE.MeshPhongMaterial({color: color[4]});
+            }
 
-    function scaleColor(scale) {
+            else if (scale >= 4 && scale < 5) {
+                var material = new THREE.MeshPhongMaterial({color: color[5]});
+            }
 
-        if (scale >= 1 && scale < 1.5) {
-            var material = new THREE.MeshPhongMaterial({ color: color[0]} );
+            else if (scale >= 5 && scale < 6) {
+                var material = new THREE.MeshPhongMaterial({color: color[6]});
+            }
+
+            else if (scale >= 6 && scale < 7) {
+                var material = new THREE.MeshPhongMaterial({color: color[7]});
+            }
+
+            else if (scale >= 7 && scale < 8) {
+                var material = new THREE.MeshPhongMaterial({color: color[8]});
+            }
+
+            else if (scale >= 8 && scale < 9) {
+                var material = new THREE.MeshPhongMaterial({color: color[9]});
+            }
+
+            else if (scale >= 10 && scale < 11) {
+                var material = new THREE.MeshPhongMaterial({color: color[10]});
+            }
+
+            else if (scale >= 11 && scale < 12) {
+                var material = new THREE.MeshPhongMaterial({color: color[11]});
+            }
+
+            else {
+                var material = new THREE.MeshPhongMaterial({color: color[12]});
+            }
+            return material;
+
         }
 
-        else if (scale >= 1.5 && scale < 2) {
-            var material = new THREE.MeshPhongMaterial({ color: color[1]} );
-        }
-
-        else if (scale >= 2 && scale < 2.5) {
-            var material = new THREE.MeshPhongMaterial({ color: color[2]} );
-        }
-
-        else if (scale >= 2.5 && scale < 3) {
-            var material = new THREE.MeshPhongMaterial({ color: color[3]} );
-        }
-
-        else if (scale >= 3 && scale < 4) {
-            var material = new THREE.MeshPhongMaterial({ color: color[4]} );
-        }
-
-        else if (scale >= 4 && scale < 5) {
-            var material = new THREE.MeshPhongMaterial({ color: color[5]} );
-        }
-
-        else if (scale >= 5 && scale < 6) {
-            var material = new THREE.MeshPhongMaterial({ color: color[6]} );
-        }
-
-        else if (scale >= 6 && scale < 7) {
-            var material = new THREE.MeshPhongMaterial({ color: color[7]} );
-        }
-
-        else if (scale >= 7 && scale < 8) {
-            var material = new THREE.MeshPhongMaterial({ color: color[8]} );
-        }
-
-        else if (scale >= 8 && scale < 9) {
-            var material = new THREE.MeshPhongMaterial({ color: color[9]} );
-        }
-
-        else if (scale >= 10 && scale < 11) {
-            var material = new THREE.MeshPhongMaterial({ color: color[10]} );
-        }
-
-        else if (scale >= 11 && scale < 12) {
-            var material = new THREE.MeshPhongMaterial({ color: color[11]} );
-        }
-
-        else {
-            var material = new THREE.MeshPhongMaterial({color: color[12]} );
-        }
-
-        return material;
-
-    }
-
-    Asia.material = scaleColor(scAsia);
-    Oceanien.material = scaleColor(scOceanien);
-    Europe.material = scaleColor(scEurope);
-    Northamerica.material = scaleColor(scNorthamerica);
-    Southamerica.material = scaleColor(scSouthamerica);
-    Africa.material = scaleColor(scAfrica);
+        Asia.material = scaleColor(scAsia);
+        Oceanien.material = scaleColor(scOceanien);
+        Europe.material = scaleColor(scEurope);
+        Northamerica.material = scaleColor(scNorthamerica);
+        Southamerica.material = scaleColor(scSouthamerica);
+        Africa.material = scaleColor(scAfrica);
 
 
-    /*************************************************************************************************
-     Försöker fixa scale animation m.h.a scaleAnim-funktionen så
-     den växer med growingspeed varje gång funktionen loopas.
-     Händer dock inget atm.
+        /*************************************************************************************************
+         Försöker fixa scale animation m.h.a scaleAnim-funktionen så
+         den växer med growingspeed varje gång funktionen loopas.
+         Händer dock inget atm.
 
-     http://stackoverflow.com/questions/10735922/how-to-stop-a-requestanimationframe-recursion-loop
-     *******************************************************************************************'*******/
-/*
-    var growingSpeed = 3;
-
-
-    function scaleAnim() {
-
-        //stopanimation?
-        if (positionAsia[i+2] == scAsia) return;
-
-        for(i = 0; i <= positionAsia.length; i += 3) {
-            positionAsia[i+2] *= growingSpeed;
-        }
+         http://stackoverflow.com/questions/10735922/how-to-stop-a-requestanimationframe-recursion-loop
+         *******************************************************************************************'*******/
+        /*
+         var growingSpeed = 3;
 
 
-        window.requestAnimationFrame(scaleAnim);
+         function scaleAnim() {
+
+         //stopanimation?
+         if (positionAsia[i+2] == scAsia) return;
+
+         for(i = 0; i <= positionAsia.length; i += 3) {
+         positionAsia[i+2] *= growingSpeed;
+         }
 
 
-    }*/
+         window.requestAnimationFrame(scaleAnim);
 
-    //start scale animation
-    //scaleAnim();
 
-} );
+         }*/
+
+        //start scale animation
+        //scaleAnim();
+
+    });
 
 }
+/*****************************************************
+RENDER
+*****************************************************/
 
-
-function render()
-{
+function render() {
     requestAnimationFrame(render);
     controls.update();
     renderer.render(scene, camera);
     starMesh.rotation.y += 0.0003;
     starMesh.rotation.x += 0.0003;
 }
-
-
 render();
-

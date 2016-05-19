@@ -2,7 +2,6 @@ body{
     margin: 0 0 0 0;
 }
 
-
 /*divs*/
 
 #bottonOne
@@ -28,7 +27,7 @@ body{
     z-index: 1;
 }
 
-/*Knappar*/
+/*Buttons*/
 
 .button {
     font-size:20px;

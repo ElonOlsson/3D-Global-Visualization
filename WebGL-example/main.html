@@ -5,20 +5,17 @@
     <meta charset="utf-8">
 	<link href="style.css" media="screen" rel="stylesheet" type="text/css"/>
 	<script src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js"></script>
-	<!--<style>
-			body { margin:  0; }
-			canvas { width: 100%; height:  100%; }
-
-	</style>-->
 </head>
+
 <body>
 <div id="container">
-	<div id="bottonOne" class="buttonClass">
-	<!--	<button id="POPULATION" onclick="changeAttributeOne()">Population</button> -->
-        <button id="population" class="button" onclick="doFunction(10, 3, 4, 5, 2, 1)"> POPULATION</button>
+    <!--Continent order: Africa, Asia, Europe, Oceania, South america, North america-->
+    <div id="bottonOne" class="buttonClass">
+        <button id="population" class="button" onclick="createWorld(3.5, 12, 2, 1, 1.8, 1)"> POPULATION</button>
     </div>
+
     <div id="bottonTwo" class="buttonClass">
-        <button id="medellivslängd" class="button" onclick="doFunction(1, 5, 3, 2, 9, 10)">LIFE EXPECTANCY</button>
+        <button id="medellivslängd" class="button" onclick="createWorld(1, 5, 3, 2, 9, 10)">LIFE EXPECTANCY</button>
     </div>
 
 
