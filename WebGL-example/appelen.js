@@ -56,8 +56,8 @@ else if (el.attachEvent) {
 
 
 function changeAttributeTwo() {
-    
-    
+
+
     console.log("medellivslängd");
 }
 
