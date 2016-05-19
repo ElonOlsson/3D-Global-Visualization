@@ -21,6 +21,10 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("container").appendChild(renderer.domElement);
 //document.getElementById("clickMe").onclick = doFunction(10);
 
+/*******************************************
+                 DECLARATIONS
+ ********************************************/
+
 var Asia, Europe, Africa, Southamerica, Northamerica, Oceanien;
 var theta, phi, r;
 var x, y, z;
@@ -31,6 +35,11 @@ var scNorthamerica = 1;
 var scSouthamerica = 1.8;
 var scAfrica = 3;
 
+
+/*******************************************
+        BUTTONFUNCTIONS
+********************************************/
+
 function buttonPopulation(AF, AS, EU, OC, SA, NA) {
     scAsia = AS;
     scOceanien = OC;
@@ -38,14 +47,11 @@ function buttonPopulation(AF, AS, EU, OC, SA, NA) {
     scNorthamerica = NA;
     scSouthamerica = SA;
     scAfrica = AF;
-
+    
     console.log("population");
-    createWorld();
+    createWorld(AF, AS, EU, OC, SA, NA);
 }
 
-function buttonLifeExpecantcy() {
-    console.log("medellivslängd");
-}
 
 
 var el1 = document.getElementById("population");
@@ -64,6 +70,13 @@ if (el2.addEventListener)
 else if (el2.attachEvent) {
     el2.attachEvent('onclick', buttonLifeExpecantcy);
 }
+
+function buttonLifeExpecantcy() {
+    console.log("medellivslängd");
+}
+
+
+
 
 
 
@@ -120,8 +133,10 @@ manager.onProgress = function (item, loaded, total)
 };
 
 
+
+
 createWorld();
-function createWorld() {
+function createWorld( scAsia, scOceanien, scEurope, scNorthamerica , scSouthamerica, scAfrica ) {
 
 var loader = new THREE.OBJLoader(manager);
 loader.load('thisistheultimatemap.obj', function (object) {
@@ -135,6 +150,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
     /************ ASIEN ****************/
+
 
     Asia = object.getObjectByName("Asien");
     var positionAsia = Asia.geometry.attributes.position.array;
@@ -427,6 +443,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 } );
 }
+
 
 function render()
 {
