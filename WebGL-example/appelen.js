@@ -38,7 +38,7 @@ function doFunction(AF, AS, EU, OC, SA, NA) {
     scAfrica = AF;
 
     console.log(scAsia);
-    update();
+    //update();
 }
 
 
@@ -87,7 +87,7 @@ controls.minDistance = 30;
 controls.maxDistance = 60;
 
 //updatera så att ljuset följer kameran
-controls.addEventListener('change', light_update)
+controls.addEventListener('change', light_update);
 function light_update() {
     flashlight.position.copy(camera.position);
 }
@@ -105,6 +105,7 @@ manager.onProgress = function (item, loaded, total)
 
 
 var loader = new THREE.OBJLoader(manager);
+var uvposition; //används endast där nere vid (GÖR KARTAN TILL EN SFÄR)
 loader.load('thisistheultimatemap.obj', function (object) {
 
     console.log('object');
@@ -116,14 +117,9 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
 /************ ASIEN ****************/
-<<<<<<< HEAD
 
-
-    Asia = object.getObjectByName("Asien");
-=======
     var scAsia = 12;
-    var Asia = object.getObjectByName("Asien");
->>>>>>> origin/master
+    Asia = object.getObjectByName("Asien");
     var positionAsia = Asia.geometry.attributes.position.array;
     var uvpositionAS = Asia.geometry.attributes.uv.array;
 
@@ -361,7 +357,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
      http://stackoverflow.com/questions/10735922/how-to-stop-a-requestanimationframe-recursion-loop
      *******************************************************************************************'*******/
 
-    var growingSpeed = 3;
+  /*  var growingSpeed = 3;
 
 
     function scaleAnim() {
@@ -378,14 +374,14 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
     }
-
+*/
     //start scale animation
-    scaleAnim();
+    //scaleAnim();
 
     /****************************************
      GÖR KARTAN TILL EN SFÄR
      ***************************************/
-
+/*
     object.children.forEach(function(element) {
 
         var position = element.geometry.attributes.position.array;
@@ -413,7 +409,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
         element.geometry.computeVertexNormals();
         element.geometry.normalsNeedUpdate = true;
     });
-
+*/
     //The start location
     object.rotation.x = Math.PI/2 - Math.PI/8;
     object.rotation.z = Math.PI/2 + Math.PI/8;
@@ -423,11 +419,6 @@ loader.load('thisistheultimatemap.obj', function (object) {
     
 } );
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 function render()
 {
     requestAnimationFrame(render);
@@ -439,8 +430,3 @@ function render()
 
 
 render();
-
-  function doFunction()
-{
-    scAfrica = 10;
-}
