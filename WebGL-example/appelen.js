@@ -37,19 +37,39 @@ function doFunction(AF, AS, EU, OC, SA, NA) {
     scSouthamerica = SA;
     scAfrica = AF;
 
-    console.log(scAsia);
-    update();
+    console.log("population");
 }
-
-
-
-var el = document.getElementById("clickMe");
+var el = document.getElementById("population");
 if (el.addEventListener)
     el.addEventListener("click", doFunction, false);
+
 else if (el.attachEvent) {
     el.attachEvent('onclick', doFunction);
 }
-//var doFunction;
+var el = document.getElementById("medellivslängd");
+if (el.addEventListener)
+    el.addEventListener("click", doFunction, false);
+
+else if (el.attachEvent) {
+    el.attachEvent('onclick', doFunction);
+}
+
+
+function changeAttributeTwo() {
+    
+    
+    console.log("medellivslängd");
+}
+
+
+
+var el = document.getElementById("population");
+if (el.addEventListener)
+    el.addEventListener("click", changeAttributeTwo, false);
+
+else if (el.attachEvent) {
+    el.attachEvent('onclick', changeAttributeTwo);
+}
 
 
 
@@ -115,15 +135,9 @@ loader.load('thisistheultimatemap.obj', function (object) {
      ***************************************/
 
 
-/************ ASIEN ****************/
-<<<<<<< HEAD
-
+    /************ ASIEN ****************/
 
     Asia = object.getObjectByName("Asien");
-=======
-    var scAsia = 12;
-    var Asia = object.getObjectByName("Asien");
->>>>>>> origin/master
     var positionAsia = Asia.geometry.attributes.position.array;
     var uvpositionAS = Asia.geometry.attributes.uv.array;
 
@@ -147,13 +161,11 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     Asia.rotation.x = Math.PI/2 - Math.PI/8;
     Asia.rotation.z = Math.PI/2 + Math.PI/8;
-
     scene.add(Asia);
 
 
 
-/************ OCEANIEN ****************/
-
+    /************ OCEANIEN ****************/
 
     var Oceanien = object.getObjectByName("Oceanien");
     var positionOceanien = Oceanien.geometry.attributes.position.array;
@@ -177,14 +189,12 @@ loader.load('thisistheultimatemap.obj', function (object) {
     Oceanien.geometry.computeVertexNormals();
     Oceanien.geometry.normalsNeedUpdate = true;
 
-
     Oceanien.rotation.x = Math.PI/2 - Math.PI/8;
     Oceanien.rotation.z = Math.PI/2 + Math.PI/8;
     scene.add(Oceanien);
 
 
-/************ EUROPA ****************/
-
+    /************ EUROPA ****************/
 
     var Europe = object.getObjectByName("Europa");
     var positionEurope= Europe.geometry.attributes.position.array;
@@ -214,8 +224,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
     scene.add(Europe);
 
 
-/************ NORDAMERIKA ****************/
-
+    /************ NORDAMERIKA ****************/
 
     var Northamerica = object.getObjectByName("Nordamerika");
     var positionNorthamerica = Northamerica.geometry.attributes.position.array;
@@ -242,12 +251,10 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     Northamerica.rotation.x = Math.PI/2 - Math.PI/8;
     Northamerica.rotation.z = Math.PI/2 + Math.PI/8;
-
     scene.add(Northamerica);
 
 
-/************ SYDAMERIKA ****************/
-
+    /************ SYDAMERIKA ****************/
 
     var Southamerica = object.getObjectByName("Sydamerika");
     var positionSouthamerica = Southamerica.geometry.attributes.position.array;
@@ -276,8 +283,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
     scene.add(Southamerica);
 
 
-/************ AFRIKA ****************/
-
+    /************ AFRIKA ****************/
 
     var Africa = object.getObjectByName("Afrika");
     var positionAfrica = Africa.geometry.attributes.position.array;
@@ -360,7 +366,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
      http://stackoverflow.com/questions/10735922/how-to-stop-a-requestanimationframe-recursion-loop
      *******************************************************************************************'*******/
-
+/*
     var growingSpeed = 3;
 
 
@@ -377,16 +383,16 @@ loader.load('thisistheultimatemap.obj', function (object) {
         window.requestAnimationFrame(scaleAnim);
 
 
-    }
+    }*/
 
     //start scale animation
-    scaleAnim();
+    //scaleAnim();
 
     /****************************************
      GÖR KARTAN TILL EN SFÄR
      ***************************************/
 
-    object.children.forEach(function(element) {
+    /*object.children.forEach(function(element) {
 
         var position = element.geometry.attributes.position.array;
         uvposition = element.geometry.attributes.uv.array;
@@ -414,20 +420,15 @@ loader.load('thisistheultimatemap.obj', function (object) {
         element.geometry.normalsNeedUpdate = true;
     });
 
-    //The start location
     object.rotation.x = Math.PI/2 - Math.PI/8;
     object.rotation.z = Math.PI/2 + Math.PI/8;
 
 
-    scene.add(object);
-    
+    scene.add(object);*/
+
 } );
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 function render()
 {
     requestAnimationFrame(render);
@@ -440,7 +441,3 @@ function render()
 
 render();
 
-  function doFunction()
-{
-    scAfrica = 10;
-}

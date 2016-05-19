@@ -2,42 +2,40 @@ body{
     margin: 0 0 0 0;
 }
 
-/*canvas{
-    width: 70vw;
-    float: right;
-    background-color: yellow;
-}*/
 
 /*divs*/
 
-#container {
-
-}
-
-
 #bottonOne
 {
-    position: absolute;
-    left: 50px;
+
     top: 20px;
-    width: 100px;
-    opacity: 1;
-    z-index: 1;
+
 }
 #bottonTwo
 {
-    position: absolute;
-    left: 50px;
+
     top: 50px;
-    width: 100px;
-    opacity: 1;
-    z-index: 1;
 }
 
 /*Classes*/
 
 .buttonClass{
-    font-family: "Arial Black";
-    font-size: large;
-    font-weight: lighter;
+    position: absolute;
+    left: 50px;
+    width: 200px;
+    height: 10px;
+    opacity: 1;
+    z-index: 1;
 }
+
+/*Knappar*/
+
+.button {
+    font-size:20px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    outline: 0;
+
+}
+
