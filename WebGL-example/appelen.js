@@ -28,19 +28,12 @@ document.getElementById("container").appendChild(renderer.domElement);
 var Asia, Europe, Africa, Southamerica, Northamerica, Oceanien;
 var theta, phi, r;
 var x, y, z;
-var scAsia = 12;
-var scOceanien = 1;
-var scEurope = 2;
-var scNorthamerica = 1;
-var scSouthamerica = 1.8;
-var scAfrica = 3;
-
 
 /*******************************************
         BUTTONFUNCTIONS
 ********************************************/
 
-function buttonPopulation(AF, AS, EU, OC, SA, NA) {
+function doFunction(AF, AS, EU, OC, SA, NA) {
     scAsia = AS;
     scOceanien = OC;
     scEurope = EU;
@@ -48,7 +41,6 @@ function buttonPopulation(AF, AS, EU, OC, SA, NA) {
     scSouthamerica = SA;
     scAfrica = AF;
     
-    console.log("population");
     createWorld(AF, AS, EU, OC, SA, NA);
 }
 
@@ -56,24 +48,21 @@ function buttonPopulation(AF, AS, EU, OC, SA, NA) {
 
 var el1 = document.getElementById("population");
 if (el1.addEventListener)
-    el1.addEventListener("click", buttonPopulation, false);
+    el1.addEventListener("click", doFunction, false);
 
 else if (el1.attachEvent) {
-    el1.attachEvent('onclick', buttonPopulation);
+    el1.attachEvent('onclick', doFunction);
 }
 
 
 var el2 = document.getElementById("medellivslängd");
 if (el2.addEventListener)
-    el2.addEventListener("click", buttonLifeExpecantcy, false);
+    el2.addEventListener("click", doFunction, false);
 
 else if (el2.attachEvent) {
-    el2.attachEvent('onclick', buttonLifeExpecantcy);
+    el2.attachEvent('onclick', doFunction);
 }
 
-function buttonLifeExpecantcy() {
-    console.log("medellivslängd");
-}
 
 
 
@@ -86,7 +75,7 @@ function buttonLifeExpecantcy() {
             SKAPAR GLOBEN
  ***************************************/
 var sphere = new THREE.SphereGeometry(10.5, 32, 32);
-var material = new THREE.MeshPhongMaterial({shininess: 20, color: 0x4fa1ec} );
+var material = new THREE.MeshPhongMaterial({shininess: 20, color: 0x3a6698} );
 var earthMesh = new THREE.Mesh( sphere, material);
 scene.add(earthMesh);
 
@@ -135,7 +124,7 @@ manager.onProgress = function (item, loaded, total)
 
 
 
-createWorld();
+createWorld(1, 1, 1, 1, 1, 1);
 
 function createWorld( scAsia, scOceanien, scEurope, scNorthamerica , scSouthamerica, scAfrica ) {
 
@@ -337,7 +326,10 @@ loader.load('thisistheultimatemap.obj', function (object) {
                             ÄNDRA FÄRGER
      ****************************************************/
 
-    var color = [0xd5832, 0x4e8342, 0x6fa13f, 0x9ab438, 0xdfa943, 0xcc3f3f];
+    var color = [0xd5832, 0x4e8342, 0x6fa13f, 0x9ab438, 0xcedf43, //gröna
+        0xecee47, 0xeebb1f, //gula
+        0xffa330, 0xff8e30, 0xff7930, 0xdd5b2f, //orangea
+        0xcc4d3f, 0xcc3f3f];
 
     function scaleColor(scale) {
 
@@ -351,7 +343,6 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
         else if (scale >= 2 && scale < 2.5) {
             var material = new THREE.MeshPhongMaterial({ color: color[2]} );
-
         }
 
         else if (scale >= 2.5 && scale < 3) {
@@ -362,8 +353,36 @@ loader.load('thisistheultimatemap.obj', function (object) {
             var material = new THREE.MeshPhongMaterial({ color: color[4]} );
         }
 
+        else if (scale >= 4 && scale < 5) {
+            var material = new THREE.MeshPhongMaterial({ color: color[5]} );
+        }
+
+        else if (scale >= 5 && scale < 6) {
+            var material = new THREE.MeshPhongMaterial({ color: color[6]} );
+        }
+
+        else if (scale >= 6 && scale < 7) {
+            var material = new THREE.MeshPhongMaterial({ color: color[7]} );
+        }
+
+        else if (scale >= 7 && scale < 8) {
+            var material = new THREE.MeshPhongMaterial({ color: color[8]} );
+        }
+
+        else if (scale >= 8 && scale < 9) {
+            var material = new THREE.MeshPhongMaterial({ color: color[9]} );
+        }
+
+        else if (scale >= 10 && scale < 11) {
+            var material = new THREE.MeshPhongMaterial({ color: color[10]} );
+        }
+
+        else if (scale >= 11 && scale < 12) {
+            var material = new THREE.MeshPhongMaterial({ color: color[11]} );
+        }
+
         else {
-            var material = new THREE.MeshPhongMaterial({color: color[5]} );
+            var material = new THREE.MeshPhongMaterial({color: color[12]} );
         }
 
         return material;
