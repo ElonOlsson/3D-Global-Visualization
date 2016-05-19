@@ -122,9 +122,9 @@ var scAfrica = 1;
         console.log(item, loaded, total);
     };
 
-    createWorld();
-
-    function createWorld(scAsia, scOceanien, scEurope, scNorthamerica, scSouthamerica, scAfrica) {
+    createWorld(1,1,1,1,1,1);
+    //AF, AS, EU, OC, SA, NA
+    function createWorld(scAfrica, scAsia, scEurope, scOceanien, scSouthamerica, scNorthamerica) {
         var loader = new THREE.OBJLoader(manager);
         loader.load('thisistheultimatemap.obj', function (object) {
             scene.remove(Asia);
@@ -404,5 +404,5 @@ var scAfrica = 1;
         renderer.render(scene, camera);
         starMesh.rotation.y += 0.0003;
         starMesh.rotation.x += 0.0003;
-    } 
+    }
 render();
