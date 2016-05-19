@@ -136,12 +136,8 @@ manager.onProgress = function (item, loaded, total)
 
 
 createWorld();
-<<<<<<< HEAD
 
-function createWorld() {
-=======
 function createWorld( scAsia, scOceanien, scEurope, scNorthamerica , scSouthamerica, scAfrica ) {
->>>>>>> origin/master
 
 var loader = new THREE.OBJLoader(manager);
 loader.load('thisistheultimatemap.obj', function (object) {
@@ -184,10 +180,8 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     Asia.rotation.x = Math.PI/2 - Math.PI/8;
     Asia.rotation.z = Math.PI/2 + Math.PI/8;
+    scene.add(Asia);
 
-    if(counter==0) {
-        scene.add(Asia);
-    }
 
 
     /************ OCEANIEN ****************/
@@ -250,7 +244,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
 
     /************ NORDAMERIKA ****************/
-/*
+
     Northamerica = object.getObjectByName("Nordamerika");
     var positionNorthamerica = Northamerica.geometry.attributes.position.array;
     var uvpositionNA = Northamerica.geometry.attributes.uv.array;
@@ -276,11 +270,11 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     Northamerica.rotation.x = Math.PI/2 - Math.PI/8;
     Northamerica.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Northamerica);*/
+    scene.add(Northamerica);
 
 
     /************ SYDAMERIKA ****************/
-/*
+
     Southamerica = object.getObjectByName("Sydamerika");
     var positionSouthamerica = Southamerica.geometry.attributes.position.array;
     var uvpositionSA = Southamerica.geometry.attributes.uv.array;
@@ -305,11 +299,11 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     Southamerica.rotation.x = Math.PI/2 - Math.PI/8;
     Southamerica.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Southamerica);*/
+    scene.add(Southamerica);
 
 
     /************ AFRIKA ****************/
-/*
+
     Africa = object.getObjectByName("Afrika");
     var positionAfrica = Africa.geometry.attributes.position.array;
     var uvpositionAF = Africa.geometry.attributes.uv.array;
@@ -334,7 +328,7 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     Africa.rotation.x = Math.PI/2 - Math.PI/8;
     Africa.rotation.z = Math.PI/2 + Math.PI/8;
-    scene.add(Africa);*/
+    scene.add(Africa);
 
 
 
@@ -412,44 +406,6 @@ loader.load('thisistheultimatemap.obj', function (object) {
 
     //start scale animation
     //scaleAnim();
-
-    /****************************************
-     GÖR KARTAN TILL EN SFÄR
-     ***************************************/
-
-    /*object.children.forEach(function(element) {
-
-        var position = element.geometry.attributes.position.array;
-        uvposition = element.geometry.attributes.uv.array;
-
-        console.log(position);
-
-        for (i = 0, j=0; i <= position.length; i += 3, j+=2) {
-
-            var theta = (uvposition[j+1])*-Math.PI; //U
-            var phi = (uvposition[j]-0.5)*2*-Math.PI; //V
-
-            var r = position[i+2]+10;
-            var x = r*Math.sin(theta)*Math.cos(phi);
-            var y = r*Math.sin(theta)*Math.sin(phi);
-            var z = r*Math.cos(theta);
-
-            position[i] = x;
-            position[i+1] = y;
-            position[i+2] = z;
-
-        }
-
-        element.geometry.computeFaceNormals();
-        element.geometry.computeVertexNormals();
-        element.geometry.normalsNeedUpdate = true;
-    });
-
-    object.rotation.x = Math.PI/2 - Math.PI/8;
-    object.rotation.z = Math.PI/2 + Math.PI/8;
-
-
-    scene.add(object);*/
 
 } );
 
