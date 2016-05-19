@@ -41,13 +41,6 @@ var scAfrica = 1;
      ********************************************/
 
     function buttonPopulation(AF, AS, EU, OC, SA, NA) {
-        scAsia = AS;
-        scOceanien = OC;
-        scEurope = EU;
-        scNorthamerica = NA;
-        scSouthamerica = SA;
-        scAfrica = AF;
-
         console.log("population");
         createWorld(AF, AS, EU, OC, SA, NA);
     }
@@ -324,7 +317,7 @@ var scAfrica = 1;
              ****************************************************/
 
             var color = [0xd5832, 0x4e8342, 0x6fa13f, 0x9ab438, 0xdfa943, 0xcc3f3f];
-
+            var whatColor = [1, 1.5, 2, 2.5, 3, 4]
             function scaleColor(scale) {
 
                 if (scale >= 1 && scale < 1.5) {
@@ -403,6 +396,6 @@ var scAfrica = 1;
         controls.update();
         renderer.render(scene, camera);
         starMesh.rotation.y += 0.0003;
-        starMesh.rotation.x += 0.0003;
+        starMesh.rotation.x += 0.0001;
     }
 render();
