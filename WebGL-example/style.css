@@ -2,33 +2,67 @@ body{
     margin: 0 0 0 0;
 }
 
-canvas{
-    width: 70vw;
-    float: right;
-    background-color: yellow;
+p{
+    margin: 2px;
 }
+
 
 /*divs*/
 
-#containerLeft
+#bottonOne
 {
-    float: left;
-    width:   20vw;
-    background-color: #643f80;
+    top: 20px;
+
 }
 
-#containerRight
+#bottonTwo
 {
-    float: right;
-    width: 70vw;
-    background-color: yellow;
-
+    top: 60px;
 }
 
 /*Classes*/
 
-.buttonClass{
-    font-family: "Arial Black";
-    font-size: large;
-    font-weight: lighter;
+.buttonClass {
+    position: absolute;
+    left: 50px;
+    width: 200px;
+    height: 10px;
+    opacity: 1;
+    z-index: 1;
+}
+
+.text {
+    position: absolute;
+    background-color: transparent;
+    color: white;
+    font-size:20px;
+    font-family: "Gill sans";
+    font-weight: 100;
+    left: 70px;
+    width: 200px;
+    height: 10px;
+    opacity: 1;
+    z-index: 1;
+}
+
+/*Buttons div*/
+
+.button {
+    font-size:20px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    outline: 0;
+}
+
+/*Text*/
+
+#continentsText {
+
+}
+
+#populationText {
+    top: 50px;
+    left: 220px;
+
 }
