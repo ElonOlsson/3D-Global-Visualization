@@ -1,17 +1,17 @@
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 10000);
 camera.position.set(0, 0, -40);
-
-// ljuskälla, follows the camera. camera child to scene, light child to camera
 scene.add(camera);
+
+/*******************************************
+ LIGHT SOURCE
+ ********************************************/
+// ljuskälla, follows the camera. camera child to scene, light child to camera
 var flashlight = new THREE.PointLight(0xffffff, 1, 100);
 flashlight.target = camera;
 flashlight.position.copy(camera.position);
 scene.add(flashlight);
 
-//var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.6 );
-//directionalLight.position.set( 20, 0, 20 );
-//scene.add( directionalLight );
 scene.add(new THREE.AmbientLight(0x404040));
 
 
@@ -19,11 +19,9 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("container").appendChild(renderer.domElement);
 
-
 /*******************************************
  DECLARATIONS
  ********************************************/
-
 var Asia, Europe, Africa, Southamerica, Northamerica, Oceanien;
 var theta, phi, r;
 var x, y, z;
