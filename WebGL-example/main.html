@@ -25,6 +25,7 @@
     </div>
 
     <div id="populationText" class="text" style="display:none">
+        <!-- Source: worldometres.info (2016) -->
         <p>1.212 billion</p>
         <p>4.430 billion</p>
         <p>739 million</p>
@@ -34,9 +35,21 @@
 
     </div>
 
-    <div id="bottonTwo" class="buttonClass" onclick="showLifeEx()">
-        <button id="medellivslängd" class="button" onclick="createWorld(1, 5, 3, 2, 9, 10)">LIFE EXPECTANCY</button>
+    <div id="bottonTwo" class="buttonClass" onclick="showGDP()">
+        <button id="gdp" class="button" onclick="createWorld(1, 1, 7, 11, 2, 9)">GDP PER CAPITA</button>
     </div>
+
+    <div id="gdpText" class="text" style="display:none">
+        <!-- Source: https://en.wikipedia.org/wiki/List_of_continents_by_GDP_(nominal)#GDP_.28nominal.29_by_continents (2010) -->
+        <p>1.58 USD</p>
+        <p>2.94 USD</p>
+        <p>25.43 USD</p>
+        <p>32.08 USD</p>
+        <p>39.05 USD</p>
+        <p>9.02 USD</p>
+
+    </div>
+
 
 
 </div>
@@ -45,13 +58,15 @@
         function showPopulation() {
             document.getElementById('populationText').style.display = "block";
             document.getElementById('continentsText').style.display = "block";
+            document.getElementById('gdpText').style.display = "none";
             document.getElementById('continentsText').style.top = "50px";
             document.getElementById('bottonTwo').style.top = '230px';
         }
 
-        function showLifeEx() {
+        function showGDP() {
             document.getElementById('populationText').style.display = "none";
             document.getElementById('continentsText').style.display = "block";
+            document.getElementById('gdpText').style.display = "block";
             document.getElementById('continentsText').style.top = "90px";
             document.getElementById('bottonTwo').style.top = "60px";
 

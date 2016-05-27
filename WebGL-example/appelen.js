@@ -176,11 +176,11 @@ function createWorld(scAfrica, scAsia, scEurope, scOceanien, scSouthamerica, scN
                 var material = new THREE.MeshPhongMaterial({color: color[9]});
             }
 
-            else if (scale >= 10 && scale < 11) {
+            else if (scale >= 9 && scale < 10) {
                 var material = new THREE.MeshPhongMaterial({color: color[10]});
             }
 
-            else if (scale >= 11 && scale < 12) {
+            else if (scale >= 10 && scale < 11) {
                 var material = new THREE.MeshPhongMaterial({color: color[11]});
             }
 
@@ -188,7 +188,6 @@ function createWorld(scAfrica, scAsia, scEurope, scOceanien, scSouthamerica, scN
                 var material = new THREE.MeshPhongMaterial({color: color[12]});
             }
             return material;
-
         }
 
         //        [scAsia, scEurope, scAfrica, scSouthamerica, scNorthamerica, scOceanien];
