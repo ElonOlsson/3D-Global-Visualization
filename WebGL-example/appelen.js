@@ -40,7 +40,7 @@ scene.add(earthMesh);
  ***************************************/
 var geometryStars = new THREE.SphereGeometry(50, 32, 32);
 var materialStars = new THREE.MeshBasicMaterial();
-materialStars.map = THREE.ImageUtils.loadTexture('Bilder/stars.png');
+materialStars.map = THREE.ImageUtils.loadTexture('Bilder/starsnew.png');
 materialStars.side = THREE.BackSide;
 var starMesh = new THREE.Mesh(geometryStars, materialStars);
 scene.add(starMesh);
