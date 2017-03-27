@@ -38,7 +38,7 @@ p{
     background-color: transparent;
     color: white;
     font-size:20px;
-    font-family:Consolas;
+    font-family: 'Space Mono', monospace;
     font-weight: 100;
     left: 70px;
     width: 200px;
@@ -57,7 +57,7 @@ p{
     background-color: transparent;
     color: white;
     outline: 0;
-    font-family: "Consolas";
+    font-family: 'Space Mono', monospace;
 }
 
 
