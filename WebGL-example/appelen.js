@@ -31,7 +31,7 @@ var continentsObjects = [Asia, Europe, Africa, Southamerica, Northamerica, Ocean
  CREATE SPHERE
  ***************************************/
 var sphere = new THREE.SphereGeometry(10.5, 32, 32);
-var material = new THREE.MeshPhongMaterial({shininess: 20, color: 0x3a6698});
+var material = new THREE.MeshPhongMaterial({shininess: 20, color: 0x2f939d});
 var earthMesh = new THREE.Mesh(sphere, material);
 scene.add(earthMesh);
 
