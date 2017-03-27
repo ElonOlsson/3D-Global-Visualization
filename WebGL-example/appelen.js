@@ -74,7 +74,7 @@ manager.onProgress = function (item, loaded, total) {
     console.log(item, loaded, total);
 };
 
-createWorld(1.5, 1.5, 1.5, 1.5, 1.5, 1.5);
+createWorld(2, 2, 2, 2, 2, 2);
 //AF, AS, EU, OC, SA, NA
 function createWorld(scAfrica, scAsia, scEurope, scOceanien, scSouthamerica, scNorthamerica) {
     var loader = new THREE.OBJLoader(manager);
