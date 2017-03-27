@@ -41,7 +41,7 @@ p{
     font-family: 'Space Mono', monospace;;
     font-weight: 100;
     left: 70px;
-    width: 200px;
+    width: 300px;
     height: 10px;
     opacity: 1;
     z-index: 1;
@@ -79,6 +79,6 @@ left: 60px;
 }
 
 #gdpText {
-    top: 220px;
+    top: 240px;
     left: 220px;
 }
