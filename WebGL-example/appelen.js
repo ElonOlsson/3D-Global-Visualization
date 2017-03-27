@@ -40,7 +40,7 @@ scene.add(earthMesh);
  ***************************************/
 var geometryStars = new THREE.SphereGeometry(50, 32, 32);
 var materialStars = new THREE.MeshBasicMaterial();
-materialStars.map = THREE.ImageUtils.loadTexture('Bilder/starsnew.png');
+materialStars.map = THREE.ImageUtils.loadTexture('Bilder/spaceb.png');
 materialStars.side = THREE.BackSide;
 var starMesh = new THREE.Mesh(geometryStars, materialStars);
 scene.add(starMesh);
@@ -74,7 +74,7 @@ manager.onProgress = function (item, loaded, total) {
     console.log(item, loaded, total);
 };
 
-createWorld(1, 1, 1, 1, 1, 1);
+createWorld(1.5, 1.5, 1.5, 1.5, 1.5, 1.5);
 //AF, AS, EU, OC, SA, NA
 function createWorld(scAfrica, scAsia, scEurope, scOceanien, scSouthamerica, scNorthamerica) {
     var loader = new THREE.OBJLoader(manager);
