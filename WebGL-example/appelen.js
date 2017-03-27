@@ -136,51 +136,51 @@ function createWorld(scAfrica, scAsia, scEurope, scOceanien, scSouthamerica, scN
 
 
         function scaleColor(scale) {
-            if (scale >= 1 && scale < 1.5) {
+            if (scale >= 1 && scale < 2.5) {
                 var material = new THREE.MeshPhongMaterial({color: color[0]});
             }
 
-            else if (scale >= 1.5 && scale < 2) {
+            else if (scale >= 2.5 && scale < 3) {
                 var material = new THREE.MeshPhongMaterial({color: color[1]});
             }
 
-            else if (scale >= 2 && scale < 2.5) {
+            else if (scale >= 3 && scale < 4) {
                 var material = new THREE.MeshPhongMaterial({color: color[2]});
             }
 
-            else if (scale >= 2.5 && scale < 3) {
+            else if (scale >= 4 && scale < 5) {
                 var material = new THREE.MeshPhongMaterial({color: color[3]});
             }
 
-            else if (scale >= 3 && scale < 4) {
+            else if (scale >= 5 && scale < 6) {
                 var material = new THREE.MeshPhongMaterial({color: color[4]});
             }
 
-            else if (scale >= 4 && scale < 5) {
+            else if (scale >= 6 && scale < 7) {
                 var material = new THREE.MeshPhongMaterial({color: color[5]});
             }
 
-            else if (scale >= 5 && scale < 6) {
+            else if (scale >= 7 && scale < 8) {
                 var material = new THREE.MeshPhongMaterial({color: color[6]});
             }
 
-            else if (scale >= 6 && scale < 7) {
+            else if (scale >= 8 && scale < 9) {
                 var material = new THREE.MeshPhongMaterial({color: color[7]});
             }
 
-            else if (scale >= 7 && scale < 8) {
+            else if (scale >= 9 && scale < 10) {
                 var material = new THREE.MeshPhongMaterial({color: color[8]});
             }
 
-            else if (scale >= 8 && scale < 9) {
+            else if (scale >= 10 && scale < 11) {
                 var material = new THREE.MeshPhongMaterial({color: color[9]});
             }
 
-            else if (scale >= 9 && scale < 10) {
+            else if (scale >= 11 && scale < 12) {
                 var material = new THREE.MeshPhongMaterial({color: color[10]});
             }
 
-            else if (scale >= 10 && scale < 11) {
+            else if (scale >= 12 && scale < 13) {
                 var material = new THREE.MeshPhongMaterial({color: color[11]});
             }
 
