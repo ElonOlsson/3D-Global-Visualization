@@ -56,7 +56,7 @@ controls.dampingFactor = 0.9;
 controls.enableZoom = true;
 
 //Zoomar man ut mer än 82 så missar ljuset globen
-controls.minDistance = 30;
+controls.minDistance = 35;
 controls.maxDistance = 50;
 
 //updatera så att ljuset följer kameran
