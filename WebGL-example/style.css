@@ -11,13 +11,13 @@ p{
 
 #bottonOne
 {
-    top: 120px;
+    /*top: 120px;*/
 
 }
 
 #bottonTwo
 {
-    top: 180px;
+    /*top: 180px;*/
 
 }
 
@@ -80,12 +80,12 @@ left: 60px;
 }
 
 #populationText {
-    top: 200px;
+    /*top: 230px;*/
     left: 220px;
 }
 
 #gdpText {
 
-    top: 280px;
+    /* top: 280px; */
     left: 220px;
 }
