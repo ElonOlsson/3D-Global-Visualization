@@ -11,9 +11,10 @@
 <body>
 <div id="container">
 
-    <div id="infoText" >
-        <p id="infoText2"> This is <p id="globelen">Globelen</p> - a simple way to visualize world statistics in 3D.
-            Choose a subject in the menu and press and hold the left mouse button to rotate the globe. </p>
+    <div id="infoText">
+        <p id="infoText2"> This is <br><p id="globelen">GLOBELEN</p> <br>... A simple way to visualize world statistics in 3D.
+       Choose a subject in the menu and press and hold the left mouse button to view the earth from a different angle.<br><br>
+        Source:<a href="http://www.worldometers.info/se/"> worldometers.info</a>
     </div>
 
 
@@ -61,24 +62,71 @@
 
 
 
+    <!-- CO2 emission -->
+
+    <div id="bottonThree" class="buttonClass" onclick="showCO2()">
+        <button id="co2" class="button" onclick="createWorld(1, 5, 4, 12, 3, 8)">CO2 EMISSION</button>
+    </div>
+
+    <div id="CO2Text" class="text" style="display:none">
+        <!-- Source:  -->
+        <p>INFO</p>
+        <p>INFO</p>
+        <p>INFO</p>
+        <p>INFO</p>
+        <p>INFO</p>
+        <p>INFO</p>
+    </div>
+
+
 </div>
 
-    <script>
+<script>
         function showPopulation() {
+            /* hide other lists */
+            document.getElementById('gdpText').style.display = "none";
+            document.getElementById('CO2Text').style.display = "none";
+
+            /*display list */
             document.getElementById('populationText').style.display = "block";
             document.getElementById('continentsText').style.display = "block";
-            document.getElementById('gdpText').style.display = "none";
+
+            /*style*/
             document.getElementById('continentsText').style.top = "150px";
             document.getElementById('bottonTwo').style.top = '340px';
-            document.getElementById('bottonOne').style.top = '110px';
+            document.getElementById('bottonThree').style.top = '420px';
         }
 
         function showGDP() {
+            /* hide other lists */
             document.getElementById('populationText').style.display = "none";
+            document.getElementById('CO2Text').style.display = "none";
+
+            /*display list*/
             document.getElementById('continentsText').style.display = "block";
             document.getElementById('gdpText').style.display = "block";
-            document.getElementById('continentsText').style.top = "240px";
-            document.getElementById('bottonTwo').style.top = "190px";
+
+            /*style*/
+            document.getElementById('continentsText').style.top = "220px";
+            document.getElementById('bottonTwo').style.top = "180px";
+            document.getElementById('bottonThree').style.top = "420px";
+
+        }
+
+        function showCO2() {
+
+            /* hide other lists */
+            document.getElementById("populationText").style.display = "none";
+            document.getElementById('gdpText').style.display = "none";
+
+            /* display list */
+            document.getElementById('continentsText').style.display = "block";
+            document.getElementById('CO2Text').style.display = "block";
+
+            /* style */
+            document.getElementById('continentsText').style.top = "290px";
+            document.getElementById('bottonThree').style.top = "250px";
+            document.getElementById('bottonTwo').style.top = "180px";
 
         }
 
