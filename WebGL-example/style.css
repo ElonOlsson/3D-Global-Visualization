@@ -1,4 +1,7 @@
+/* ALLMÄNT */
+
 body{
+
     margin: 0 0 0 0;
 }
 
@@ -7,43 +10,57 @@ p{
 }
 
 
-<<<<<<< HEAD
-/*divs*/
+/* LÄNKAR */
+a {
+    display: inline;
+    text-decoration: none;
+    color: white;
+    font-size:14px;
+    font-family: 'Space Mono', monospace;
+}
+
+a:visited {
+    color: #0d5832;
+}
 
 /* population */
 #bottonOne
 {
-    top: 120px;
-
+    top: 110px;
 }
 
-/* GDP */
+/* GDP , varför heter de botton? */
 #bottonTwo
 {
     top: 180px;
 }
 
+/* CO2 Emission */
+#bottonThree
+{
+    top: 250px;
 
-/*Classes*/
-
-.buttonClass {
-    position: absolute;
-    left: 50px;
-    width: 300px;
-    height: 10px;
-    opacity: 1;
-    z-index: 1;
-    margin-top: auto;
 }
 
 .text {
     position: absolute;
     background-color: transparent;
     color: white;
+    font-size:18px;
+    font-family: 'Space Mono', monospace;;
     font-weight: 100;
-    font-size:20px;
-    font-family: 'Space Mono', monospace;
-    left: 70px;
+    width: 300px;
+    height: 10px;
+    opacity: 1;
+    z-index: 1;
+    /*margin-top: auto;*/
+}
+
+
+/* BUTTONS */
+.buttonClass {
+    position: absolute;
+    left: 55px;
     width: 300px;
     height: 10px;
     opacity: 1;
@@ -60,8 +77,15 @@ p{
     background-color: transparent;
     color: white;
     outline: 0;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Space Mono', monospace;;
 }
+
+
+.button:hover{
+    font-weight:bold;
+}
+
+/* About the application and source */
 
 #infoText{
     position: absolute;
@@ -80,20 +104,17 @@ p{
 #globelen{
     display: inline;
     color: #2f939d;
-    font-size:16px;
+    font-size: 40px;
+    font-weight:bold;
     font-family: 'Space Mono', monospace;
-
 }
 
 #infoText2{
     display:inline;
 }
 
-.button:hover{
-   font-weight:bold;
-}
 
-/*Text*/
+/* TEXT IN LISTS */
 
 #continentsText {
 left: 60px;
@@ -101,26 +122,18 @@ left: 60px;
 
 #populationText {
     top: 150px;
-    left: 230px;
+    left: 60px;
+    text-align: right;
 }
 
 #gdpText {
-
-     top: 220px;
-    left: 230px;
+    top: 220px;
+    left: 60px;
+    text-align: right;
 }
 
-
-/*divs*/
-
-#bottonOne
-{
-    top: 120px;
-
-}
-
-#bottonTwo
-{
-    top: 180px;
-
+#CO2Text {
+    top: 290px;
+    left: 60px;
+    text-align: right;
 }
