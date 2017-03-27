@@ -38,13 +38,7 @@ p{
     background-color: transparent;
     color: white;
     font-size:20px;
-<<<<<<< HEAD
     font-family: 'Space Mono', monospace;
-    font-weight: 101;
-=======
-    font-family: 'Space Mono', monospace;;
-    font-weight: 100;
->>>>>>> refs/remotes/origin/master
     left: 70px;
     width: 300px;
     height: 10px;
@@ -61,11 +55,7 @@ p{
     background-color: transparent;
     color: white;
     outline: 0;
-<<<<<<< HEAD
     font-family: 'Space Mono', monospace;
-=======
-    font-family: 'Space Mono', monospace;;
->>>>>>> refs/remotes/origin/master
 }
 
 
@@ -87,10 +77,7 @@ left: 60px;
 }
 
 #gdpText {
-<<<<<<< HEAD
+
     top: 250px;
-=======
-    top: 240px;
->>>>>>> refs/remotes/origin/master
     left: 220px;
 }
