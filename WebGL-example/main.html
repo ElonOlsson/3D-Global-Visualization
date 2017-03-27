@@ -11,9 +11,6 @@
 
 <body>
 <div id="container">
-
-    <p class="textbox">Welcome to Globelen, a way to vizualise statistics in 3D.</p>
-
     <!--Continent order: Africa, Asia, Europe, Oceania, South america, North america-->
     <div id="bottonOne" class="buttonClass" onclick="showPopulation()">
         <button id="population" class="button" onclick="createWorld(4.5, 13, 3, 2, 2.8, 2)"> POPULATION</button>
@@ -66,14 +63,14 @@
             document.getElementById('continentsText').style.display = "block";
             document.getElementById('gdpText').style.display = "none";
             document.getElementById('continentsText').style.top = "180px";
-            document.getElementById('bottonTwo').style.top = "330px";
+            document.getElementById('bottonTwo').style.top = "180px";
         }
 
         function showGDP() {
             document.getElementById('populationText').style.display = "none";
             document.getElementById('continentsText').style.display = "block";
             document.getElementById('gdpText').style.display = "block";
-            document.getElementById('continentsText').style.top = "250px";
+            document.getElementById('continentsText').style.top = "270px";
             document.getElementById('bottonTwo').style.top = "180px";
 
         }

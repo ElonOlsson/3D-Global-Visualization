@@ -34,15 +34,6 @@ p{
     margin-top: auto;
 }
 
-.textbox{
-    font-size:18px;
-    border: none;
-    background-color: transparent;
-    color: white;
-    font-family: 'Space Mono', monospace;
-    opacity: 1;
-    z-index: 1;
-}
 
 /*Buttons div*/
 
@@ -69,14 +60,14 @@ left: 60px;
 }
 
 #populationText {
-    top: 230px;
-    left: 220px;
+    top: 150px;
+    left: 230px;
 }
 
 #gdpText {
 
-     top: 280px;
-    left: 220px;
+     top: 220px;
+    left: 230px;
 }
 
 
