@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Globelen</title>
+	<title>Globelen</title>
     <meta charset="utf-8">
-    <link href="style.css" media="screen" rel="stylesheet" type="text/css"/>
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js"></script>
+	<link href="style.css" media="screen" rel="stylesheet" type="text/css"/>
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
 </head>
 
@@ -13,7 +13,7 @@
 
     <div id="infoText" >
         <p id="infoText2"> This is <p id="globelen">Globelen</p> - a simple way to visualize world statistics in 3D.
-        Choose a subject in the menu and press and hold the left mouse button to rotate the globe. </p>
+            Choose a subject in the menu and press and hold the left mouse button to rotate the globe. </p>
     </div>
 
 
@@ -63,31 +63,31 @@
 
 </div>
 
-<script>
-    function showPopulation() {
-        document.getElementById('populationText').style.display = "block";
-        document.getElementById('continentsText').style.display = "block";
-        document.getElementById('gdpText').style.display = "none";
-        document.getElementById('continentsText').style.top = "150px";
-        document.getElementById('bottonTwo').style.top = '340px';
-        document.getElementById('bottonOne').style.top = '110px';
-    }
+    <script>
+        function showPopulation() {
+            document.getElementById('populationText').style.display = "block";
+            document.getElementById('continentsText').style.display = "block";
+            document.getElementById('gdpText').style.display = "none";
+            document.getElementById('continentsText').style.top = "150px";
+            document.getElementById('bottonTwo').style.top = '340px';
+            document.getElementById('bottonOne').style.top = '110px';
+        }
 
-    function showGDP() {
-        document.getElementById('populationText').style.display = "none";
-        document.getElementById('continentsText').style.display = "block";
-        document.getElementById('gdpText').style.display = "block";
-        document.getElementById('continentsText').style.top = "240px";
-        document.getElementById('bottonTwo').style.top = "190px";
+        function showGDP() {
+            document.getElementById('populationText').style.display = "none";
+            document.getElementById('continentsText').style.display = "block";
+            document.getElementById('gdpText').style.display = "block";
+            document.getElementById('continentsText').style.top = "240px";
+            document.getElementById('bottonTwo').style.top = "190px";
 
-    }
+        }
 
-</script>
+    </script>
 
-<script src = "OrbitControls.js"></script>
-<script src = "egenOBJLoader.js"></script>
-<script src = "egenJSONLoader.js"></script>
-<script src = "appelen.js"></script>
+    <script src = "OrbitControls.js"></script>
+    <script src = "egenOBJLoader.js"></script>
+    <script src = "egenJSONLoader.js"></script>
+    <script src = "appelen.js"></script>
 </body>
 </html>
 

@@ -7,6 +7,30 @@ p{
 }
 
 
+/*divs*/
+
+/* population */
+#bottonOne
+{
+    top: 120px;
+
+}
+
+/* GDP */
+#bottonTwo
+{
+    top: 180px;
+}
+
+/* third categroy */
+#bottonThree
+{
+    top: 180px;
+
+}
+
+
+
 
 /*Classes*/
 
@@ -24,16 +48,15 @@ p{
     position: absolute;
     background-color: transparent;
     color: white;
-    font-size:20px;
-    font-family: 'Space Mono', monospace;
-    left: 70px;
+    font-size:18px;
+    font-family: 'Space Mono', monospace;;
+    font-weight: 100;
     width: 300px;
     height: 10px;
     opacity: 1;
     z-index: 1;
     margin-top: auto;
 }
-
 
 /*Buttons div*/
 
@@ -43,14 +66,38 @@ p{
     background-color: transparent;
     color: white;
     outline: 0;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Space Mono', monospace;;
 }
 
+#infoText{
+    position: absolute;
+    color: white;
+    font-size:14px;
+    font-family: 'Space Mono', monospace;
+    width: 280px;
+    height: 10px;
+    right: 50px;
+    opacity: 1;
+    z-index: 1;
+    margin-top: 100px;
+    display: inline;
+}
+
+#globelen{
+    display: inline;
+    color: #2f939d;
+    font-size:16px;
+    font-family: 'Space Mono', monospace;
+
+}
+
+#infoText2{
+    display:inline;
+}
 
 
 .button:hover{
    font-weight:bold;
-
 }
 
 /*Text*/
@@ -61,26 +108,10 @@ left: 60px;
 
 #populationText {
     top: 150px;
-    left: 230px;
+    left: 220px;
 }
 
 #gdpText {
-
-     top: 220px;
-    left: 230px;
-}
-
-
-/*divs*/
-
-#bottonOne
-{
-    top: 120px;
-
-}
-
-#bottonTwo
-{
-    top: 180px;
-
+    top: 240px;
+    left: 220px;
 }
