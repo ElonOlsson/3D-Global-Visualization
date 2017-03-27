@@ -30,7 +30,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebGL-example/main.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
@@ -44,7 +44,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebGL-example/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="194">
@@ -260,10 +260,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20077000" />
+    <option name="totallyTimeSpent" value="20130000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1378" height="780" extended-state="1" />
+    <frame x="-11" y="-11" width="1378" height="780" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17180617" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -563,14 +563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebGL-example/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="31" column="15" lean-forward="true" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebGL-example/main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -580,6 +572,14 @@
             <marker date="1490626357768" expanded="false" signature="741:753" ph="..." />
             <marker date="1490626357768" expanded="false" signature="963:975" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebGL-example/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="31" column="15" lean-forward="true" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
