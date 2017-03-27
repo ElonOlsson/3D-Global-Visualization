@@ -47,6 +47,14 @@ p{
     margin-top: auto;
 }
 
+#textbox{
+    font-size:18px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-family: 'Space Mono', monospace;
+}
+
 /*Buttons div*/
 
 .button {
@@ -72,7 +80,7 @@ left: 60px;
 }
 
 #populationText {
-    top: 160px;
+    top: 200px;
     left: 220px;
 }
 
