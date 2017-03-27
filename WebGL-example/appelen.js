@@ -57,7 +57,7 @@ controls.enableZoom = true;
 
 //Zoomar man ut mer än 82 så missar ljuset globen
 controls.minDistance = 30;
-controls.maxDistance = 60;
+controls.maxDistance = 50;
 
 //updatera så att ljuset följer kameran
 controls.addEventListener('change', light_update)
