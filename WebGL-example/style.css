@@ -34,12 +34,15 @@ p{
     margin-top: auto;
 }
 
-#textbox{
+.textbox{
     font-size:18px;
     border: none;
     background-color: transparent;
     color: white;
     font-family: 'Space Mono', monospace;
+    opacity: 1;
+    z-index: 1;
+    margin-top: auto;
 }
 
 /*Buttons div*/
