@@ -7,19 +7,6 @@ p{
 }
 
 
-/*divs*/
-
-#bottonOne
-{
-    /*top: 120px;*/
-
-}
-
-#bottonTwo
-{
-    /*top: 180px;*/
-
-}
 
 /*Classes*/
 
@@ -80,12 +67,27 @@ left: 60px;
 }
 
 #populationText {
-    /*top: 230px;*/
+    top: 230px;
     left: 220px;
 }
 
 #gdpText {
 
-    /* top: 280px; */
+     top: 280px;
     left: 220px;
+}
+
+
+/*divs*/
+
+#bottonOne
+{
+    top: 120px;
+
+}
+
+#bottonTwo
+{
+    top: 180px;
+
 }
