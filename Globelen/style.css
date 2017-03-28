@@ -14,15 +14,14 @@ p{
 a {
     display: inline;
     text-decoration: none;
-    color: white;
+    color: #2f939d;
     font-size:14px;
     font-family: 'Space Mono', monospace;
     font-weight: 100;
 }
 
-a:visited {
-    color: #2f939d;
-    font-weight: 100;
+a:hover {
+    font-size:17px;
 }
 
 /* population */
