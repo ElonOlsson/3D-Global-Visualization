@@ -21,7 +21,8 @@ a {
 }
 
 a:visited {
-    color: #0d5832;
+    color: #2f939d;
+    font-weight: 100;
 }
 
 /* population */
@@ -62,7 +63,7 @@ a:visited {
 .buttonClass {
     position: absolute;
     left: 55px;
-    width: 300px;
+    width: 500px;
     height: 10px;
     opacity: 1;
     z-index: 1;
@@ -133,7 +134,7 @@ left: 60px;
     text-align: right;
 }
 
-#CO2Text {
+#lifeText {
     top: 290px;
     left: 60px;
     text-align: right;
