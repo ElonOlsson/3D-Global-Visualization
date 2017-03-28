@@ -17,6 +17,7 @@ a {
     color: white;
     font-size:14px;
     font-family: 'Space Mono', monospace;
+    font-weight: 100;
 }
 
 a:visited {
